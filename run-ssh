@@ -1,39 +1,35 @@
-#!//bin/sh
-## Get/Save ssh environement.
-# Chmouel Boudjnah <chmouel@mandrakesoft.com>
+#!/bin/sh
+#---------------------------------------------------------------
+# Project         : personal config
+# Module          : config
+# File            : run-ssh
+# Version         : $Id: run-ssh,v 1.4 2001-12-30 04:13:03 flepied Exp $
+# Author          : Frederic Lepied
+# Created On      : Sat Dec 29 21:16:37 2001
+# Purpose         : Get/Save ssh environement.
+#---------------------------------------------------------------
 
-if [ ! -r "$HOME/.ssh/identity" ]; then
-    return
+if [ -n "$SSH_AUTH_SOCK" ];then
+    if [ ! -e "$SSH_AUTH_SOCK" ];then
+        unset SSH_AUTH_SOCK
+    else
+	return
+    fi
 fi
 
 SINFO=$HOME/.ssh/info.`uname -n`
 
-[[ -f $SINFO ]] && source $SINFO
+[ -f $SINFO ] && . $SINFO
 
-if [[ -n $SSH_AUTH_SOCK ]];then
-    if [[ ! -e $SSH_AUTH_SOCK ]];then
-	unset SSH_AUTH_SOCK
-	rm -f $SINFO
-    else
-	echo SSH_AUTH_SOCK=$SSH_AUTH_SOCK > $SINFO
-    fi
-fi
+ssh-add -l > /dev/null 2>&1
 
-if [[ -n $SSH_AGENT_PID ]];then
-    if [[ -z $(ps --no-header -p $SSH_AGENT_PID) || -z $SSH_AUTH_SOCK ]];then
-	unset SSH_AGENT_PID
-	rm -f $SINFO
-    else
-	echo SSH_AGENT_PID=$SSH_AGENT_PID >> $SINFO
-    fi
-fi
-
-if [[ -z $SSH_AUTH_SOCK || -z $SSH_AGENT_PID ]];then
+if [ $? != 0 ];then
+    [ -n "$PS1" ] && echo "No agent, removing $SINFO"
     rm -f $SINFO
 fi
 
-if [[ ! -f $SINFO ]];then
-    ssh-agent > $SINFO
+if [ ! -f $SINFO ];then
+    ssh-agent | fgrep -v echo > $SINFO
     . $SINFO
 fi
 
@@ -47,10 +43,25 @@ then
 
     # if not try to add the default one
     if [ $? == 0 ]; then
+	KEY=
+
+	for k in $HOME/.ssh/id_dsa $HOME/.ssh/id_dsa $HOME/.ssh/identity; do
+	    if [ -r $k ]; then
+		KEY=$k
+		break
+	    fi
+	done
+
+	if [ -z "$KEY" ]; then
+	    return
+	fi
+
 	if [ -z "$DISPLAY" ]; then
-	    ssh-add
+	    ssh-add $KEY
 	else
-	    ssh-add < /dev/null
+	    ssh-add $KEY < /dev/null
 	fi
     fi
 fi
+
+# run-ssh ends here
