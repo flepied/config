@@ -2,7 +2,7 @@
 ;; Project         : Imagine
 ;; File            : .gnus.el
 ;; Type		   : -*- emacs-lisp -*-
-;; Version         : $Id: .gnus.el,v 1.5 2003-08-19 05:03:29 flepied Exp $
+;; Version         : $Id: .gnus.el,v 1.6 2004-06-17 06:31:05 flepied Exp $
 ;; Author          : Frederic Lepied
 ;; Created On      : Fri Aug 30 09:37:54 1996
 ;; Purpose         : 
@@ -34,6 +34,7 @@
 			     ("mail.spam" "\\[--SPAM--\\]")
 			     ("mail.mandrake.cvs" "^X-CVS-module:\\|^X-CVSROOT:")
 			     ("mail.cvs-log" "^X-Attribution: cvs-log")
+			     ("mail.x-packagers" "x-packagers@freedesktop.org")
 			     ("mail.xfree86.config" ,(To "config@xfree86.org"))
 			     ("mail.xfree86.xinput" ,(To "xinput@xfree86.org"))
 			     ("mail.xfree86" "\\(devel\\|members\\|beta\\|alpha\\)@XFree86.Org")
@@ -42,9 +43,14 @@
 			     ("mail.perso.debian" ,(To "lepied@debian.org"))
 			     ("mail.junk" "^Subject: \\(test\\|subscribe\\|unsubscribe\\|printer job\\)")
 			     ("guru-advice" ,(ToMml "guru-advice"))
+			     ("mail.mandrake.oem-partner" ,(ToMml "oem-partner"))
+			     ("mail.mandrake.testzilla" ,(ToMml "testzilla"))
+			     ("mail.mandrake.rh-tech" ,(ToMml "rh-tech"))
 			     ("mail.mandrake.changelog" ,(ToMml "changelog"))
 			     ("mail.mandrake.clic-dev-public" ,(ToMml "clic-dev-public"))
 			     ("mail.mandrake.cooker" ,(ToMml "cooker"))
+			     ("mail.mandrake.cooker-server" ,(ToMml "cooker-server"))
+			     ("mail.mandrake.move" ,(ToMml "cooker-mandrakemove"))
 			     ("mail.mandrake.cooker-i18n" ,(ToMml "cooker-i18n"))
 			     ("mail.mandrake.corpo" ,(ToMml "corpo"))
 			     ("mail.mandrake.diskdrake" ,(ToMml "diskdrake"))
@@ -59,7 +65,7 @@
 			     ("mail.mandrake.maintainers" ,(ToMml "maintainers"))
 			     ("mail.mandrake.oxchrpm" ,(ToMml "oxchrpm"))
 			     ("mail.mandrake.packages" ,(ToMml "packages"))
-			     ("mail.mandrake.paris" ,(ToMml "paris"))
+			     ("mail.mandrake.paris" ,(ToMml "paris\\|aboukir"))
 			     ("mail.mandrake.policy" ,(ToMml "policy"))
 			     ("mail.mandrake.ports" ,(ToMml "ports"))
 			     ("mail.mandrake.security" ,(ToMml "\\(security-discuss\\|security-announce\\)"))
@@ -68,13 +74,16 @@
 			     ("mail.mandrake.secteam" ,(To "secteam@mandrakesecure.net"))
 			     ("mail.mandrake.sparc" ,(ToMml "sparc"))
 			     ("mail.mandrake.tools" ,(ToMml "tools"))
+			     ("mail.mandrake.clic" ,(ToMml "clic-public"))
+			     ("mail.mandrake.cooker-amd64" ,(ToMml "cooker-amd64"))
 			     ("mail.mandrake.hig" ,(ToMml "hig"))
 			     ("mail.mandrake.troll" ,(ToMml "troll"))
 			     ("mail.mandrake.direction"  ,(ToMml "direction"))
-			     ("mail.mandrake.all" ,(ToMml "all"))
+			     ("mail.mandrake.all" ,(ToMml "all\\(users\\)"))
 			     ("mail.mandrake.all-announce" ,(ToMml "all-announce"))
 			     ("mail.mandrake.new-apps" ,(ToMml "new-apps"))
 			     ("mail.mandrake.compil" ,(To "compil@mandrake.org"))
+			     ("mail.youri" ,(To "youri-discuss@lists.zarb.org"))
 			     ("mail.glibc" ,(To "libc-alpha@"))
 			     ("mail.vendor-sec" ,(To "vendor-sec@lst.de"))
 			     ("mail.xvendor" ,(To "xvendor@lists.openwall.com"))
@@ -98,6 +107,7 @@
 			     ("mail.nfs" ,(To "nfs@lists.sourceforge.net"))
 			     ("mail.lds" ,(To "lds.*@"))
 			     ("mail.lsb" ,(To "lsb.*@"))
+			     ("mail.lsp-discuss" ,(To "lsp-discussion@linuxsolutionproviders.co.uk"))
 			     ("mail.zcip" ,(To "zcip@linux.kernel.org\\|zeroconf-workers@lists.sourceforge.net"))
 			     ("mail.zeroconf" ,(To "zeroconf@merit.edu"))
 			     ("mail.pleac" ,(To "pleac-discuss@lists.sourceforge.net"))
