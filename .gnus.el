@@ -8,14 +8,12 @@
 ;; Purpose         : 
 ;;---------------------------------------------------------------
 
-(setq user-mail-address "flepied@mandrakesoft.com"
-      user-full-name "Frederic Lepied"
-      message-send-mail-function 'smtpmail-send-it)
-
 (setq gnus-activate-foreign-newsgroups 10
       nnmail-split-methods '(("mail.todo" "^To:[^.]*lepied\\+todo")
 			     ("mail.tosee" "^To:[^.]*lepied\\+tosee")
 			     ("mail.cvs-log" "^X-Attribution: cvs-log")
+			     ("mail.xfree86.xinput" "X-Mailing-List: xinput@xfree86.org")
+			     ("mail.xfree86" "\\(devel\\|members\\|beta\\|alpha\\)@XFree86.Org")
 			     ("mail.pd3ics" "^\\(To\\|CC\\):[^.]*pd3ics")
 ;;			     ("mail.perso" "^From: [^.]*lepied")
 			     ("mail.perso.xfree86" "^\\(To\\|CC\\):[^.]*lepied@xfree86.org")
@@ -111,5 +109,8 @@
 ;;(require 'mime-setup)
 
 (setq gnus-signature-file "~/.signature")
+
+(add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)
+(add-hook 'gnus-startup-hook 'bbdb-insinuate-message)
 
 ;;; end of .gnus.el

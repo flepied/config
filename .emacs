@@ -9,15 +9,6 @@
 (add-load-path "~/emacs/")
 (add-load-path "~/emacs/site-lisp/")
 
-(if (add-load-path "~/emacs/pcomplete/")
-    (progn
-      (load "pcmpl-auto")
-      (add-hook 'shell-mode-hook 'pcomplete-shell-setup)))
-
-
-(if (add-load-path "~/emacs/eshell/")
-    (require 'eshell-auto))
-
 ;; load configs from ~/emacs/site-lisp/config
 
 (require 'cfg)
@@ -46,6 +37,24 @@
  	   web
  	   rpm
 	   )
+
+(setq user-mail-address "flepied@mandrakesoft.com"
+      user-full-name "Frederic Lepied"
+      message-send-mail-function 'smtpmail-send-it)
+
+;;============================================================================
+;;============================================================================
+
+(if (add-load-path "~/emacs/pcomplete/")
+    (progn
+      (load "pcmpl-auto")
+      (add-hook 'shell-mode-hook 'pcomplete-shell-setup)))
+
+(if (add-load-path "~/emacs/eshell/")
+    (require 'eshell-auto))
+
+(if (add-load-path "~/emacs/bbdb/lisp/")
+    (load "auto-autoloads"))
 
 ;;============================================================================
 ;;============================================================================
