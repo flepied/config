@@ -1,3 +1,5 @@
 cvs -z3
 update -P
 checkout -P
+rdiff -u
+diff -u
