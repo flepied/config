@@ -6,7 +6,8 @@ export HOSTNAME=${HOSTNAME-"`uname -n`"}
 export PGPPATH=${PGPPATH-${HOME}/.pgpkeys}
 export NNTPSERVER=${NNTPSERVER-news}
 export IRCSERVER=${IRCSERVER-24.6.229.74}
-export PRINTER=${PRINTER-printer6}
+export PRINTER=${PRINTER-EpsonAcculaser2000}
+#export PRINTER=${PRINTER-printer}
 export SMTPSERVER=${SMTPSERVER-extmailfr}
 export CVS_RSH=${CVS_RSH=ssh}
 export RPM=${RPM=$HOME/RPM}
@@ -19,7 +20,7 @@ if type distcc > /dev/null 2>&1; then
     export CXX=${CXX='distcc g++'}
 fi
 
-PATH="$HOME/bin:/usr/local/bin:/usr/X11R6/bin:/usr/bin:/bin:/usr/games:."
+PATH="$HOME/private/bin:$HOME/bin:/usr/local/bin:/usr/X11R6/bin:/usr/bin:/bin:/usr/games:."
 LESS=-MM
 
 umask 022
@@ -61,8 +62,8 @@ function xhh () {
 	"/usr/bin/X11/xrsh -debug ${host:?"(Usage : xhh host [command])"} $* "
 }
 
-#PS1='`hostname`:`pwd`# '
-    PS1='\u:\h:\w\$ '
+#PS1='`hostname`@`pwd`# '
+    PS1='\u@\h:\w\$ '
     PS2='> '
     if [ "$SHELL" = "/bin/pdksh" ]; then
 	PS1="! $ "
