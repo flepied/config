@@ -1,0 +1,37 @@
+#!/usr/bin/zsh -xf
+## Get/Save ssh environement.
+# Chmouel Boudjnah <chmouel@mandrakesoft.com>
+
+SINFO=~chmou/.ssh/info
+
+[[ -f $SINFO ]] && source $SINFO
+
+if [[ -n $SSH_AUTH_SOCK ]];then
+    if [[ ! -e $SSH_AUTH_SOCK ]];then
+	unset SSH_AUTH_SOCK
+	rm -f $SINFO
+    else
+	echo SSH_AUTH_SOCK=$SSH_AUTH_SOCK > $SINFO
+    fi
+fi
+
+if [[ -n $SSH_AGENT_PID ]];then
+    if [[ -z $(ps --no-header -p $SSH_AGENT_PID) || -z $SSH_AUTH_SOCK ]];then
+	unset SSH_AGENT_PID
+	rm -f $SINFO
+    else
+	echo SSH_AGENT_PID=$SSH_AGENT_PID >> $SINFO
+    fi
+fi
+
+if [[ -z $SSH_AUTH_SOCK || -z $SSH_AGENT_PID ]];then
+    rm -f $SINFO
+fi
+
+if [[ ! -f $SINFO ]];then
+    eval `ssh-agent`
+    echo SSH_AGENT_PID=$SSH_AGENT_PID > $SINFO
+    echo SSH_AUTH_SOCK=$SSH_AUTH_SOCK >> $SINFO
+fi
+
+export SSH_AGENT_PID SSH_AUTH_SOCK
