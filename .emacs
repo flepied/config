@@ -80,6 +80,10 @@
 (setq diff-switches "-u")
 (setq cvs-diff-options '("-u"))
 
+(require 'orig)
+(setq orig-save-regex "/BUILD/"
+      orig-ext ".fred")
+
 ;;============================================================================ 
 ;; desktop settings                                                            
 ;;============================================================================
