@@ -38,7 +38,7 @@
  	   rpm
 	   )
 
-(setq user-mail-address "lepied@videotron.ca"
+(setq user-mail-address "flepied@mandrakesoft.com"
       user-full-name "Frederic Lepied"
       ;message-send-mail-function 'smtpmail-send-it
       ;smtpmail-smtp-server "smtp.wanadoo.fr"
