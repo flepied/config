@@ -63,7 +63,7 @@
 
 ;;============================================================================
 ;;============================================================================
-(setq project-name "Mandrake")
+(setq project-name "Linux-Mandrake")
 (setq user-full-name "Frederic Lepied")	; emacs can't access names in NIS ???
 (setq dc-auto-insert-directory "~/templates/")
 (eval-after-load "defaultcontent"
