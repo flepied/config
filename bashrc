@@ -6,8 +6,9 @@ export HOSTNAME=${HOSTNAME-"`uname -n`"}
 export PGPPATH=${PGPPATH-${HOME}/.pgpkeys}
 export NNTPSERVER=${NNTPSERVER-news}
 export IRCSERVER=${IRCSERVER-24.6.229.74}
-export PRINTER=${PRINTER-lpscdc}
+export PRINTER=${PRINTER-lp}
 export SMTPSERVER=${SMTPSERVER-extmailfr}
+export CVS_RSH=${CVS_RSH=ssh}
 
 PATH="$HOME/bin:/usr/local/bin:/usr/X11R6/bin:/usr/bin:/bin:/usr/games:."
 LESS=-MM
