@@ -17,5 +17,7 @@ if [ -r ~/.xdefaults ]; then
     xrdb -m ~/.xdefaults
 fi
 
+MAILPATH=/var/mail/flepied xbuffy -nobeep
+
 exec fvwm2
 exec xterm
