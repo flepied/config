@@ -1,8 +1,12 @@
-#!/usr/bin/zsh -xf
+#!//bin/sh
 ## Get/Save ssh environement.
 # Chmouel Boudjnah <chmouel@mandrakesoft.com>
 
-SINFO=~chmou/.ssh/info
+SINFO=$HOME/.ssh/info
+
+if [ ! -r "$HOME/.ssh/identity" ]; then
+    exit
+fi
 
 [[ -f $SINFO ]] && source $SINFO
 
@@ -35,3 +39,19 @@ if [[ ! -f $SINFO ]];then
 fi
 
 export SSH_AGENT_PID SSH_AUTH_SOCK
+
+# ask the pass phrase only in interactive session
+if [ -n "$PS1" -a -n "$SSH_AUTH_SOCK" ]
+then
+    # test if the agent has already an identity
+    ssh-add -l | fgrep -i 'no identit' > /dev/null 2>&1
+
+    # if not try to add the default one
+    if [ $? == 0 ]; then
+	if [ -z "$DISPLAY" ]; then
+	    ssh-add
+	else
+	    ssh-add < /dev/null
+	fi
+    fi
+fi
