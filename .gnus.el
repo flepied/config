@@ -2,16 +2,33 @@
 ;; Project         : Imagine
 ;; File            : .gnus.el
 ;; Type		   : -*- emacs-lisp -*-
-;; Version         : $Imagine$
+;; Version         : $Id: .gnus.el,v 1.3 2000-09-11 07:59:31 flepied Exp $
 ;; Author          : Frederic Lepied
 ;; Created On      : Fri Aug 30 09:37:54 1996
 ;; Purpose         : 
 ;;---------------------------------------------------------------
 
+(add-load-path "~/emacs/mailcrypt/")
+
+(load-library "mailcrypt")
+(mc-setversion "gpg")
+
+(setq gnus-message-archive-method '(nnfolder "archive"
+					     (nnfolder-directory   "~/Mail/archive")
+					     (nnfolder-active-file "~/Mail/archive/active")
+					     (nnfolder-get-new-mail nil)
+					     (nnfolder-inhibit-expiry t))
+      gnus-message-archive-group '((if (message-news-p)
+				       "misc-news"
+				     (concat "mail." (format-time-string
+						      "%Y-%m" (current-time)))))
+      )
+
 (setq gnus-activate-foreign-newsgroups 10
       nnmail-split-methods '(("mail.todo" "^To:[^.]*lepied\\+todo")
 			     ("mail.tosee" "^To:[^.]*lepied\\+tosee")
 			     ("mail.cvs-log" "^X-Attribution: cvs-log")
+			     ("mail.xfree86.config" "X-Mailing-List: config@xfree86.org")
 			     ("mail.xfree86.xinput" "X-Mailing-List: xinput@xfree86.org")
 			     ("mail.xfree86" "\\(devel\\|members\\|beta\\|alpha\\)@XFree86.Org")
 			     ("mail.pd3ics" "^\\(To\\|CC\\):[^.]*pd3ics")
@@ -23,16 +40,28 @@
 			     ("mail.mandrake.cassini" "X-Loop: cassini@linux-mandrake.com")
 			     ("mail.mandrake.changelog" "X-Loop: changelog@linux-mandrake.com")
 			     ("mail.mandrake.cooker-i18n" "X-Loop: cooker-i18n@linux-mandrake.com")
-			     ("mail.mandrake.cooker" "X-Loop: cooker@linux-mandrake.com")
+;			     ("mail.mandrake.cooker" "^Subject:.*\\[cooker\\]")
 			     ("mail.mandrake.fun" "X-Loop: fun@linux-mandrake.com")
 			     ("mail.mandrake.mandrake" "X-Loop: mandrake@linux-mandrake.com")
 			     ("mail.mandrake.all" "X-Loop: all@linux-mandrake.com")
 			     ("mail.mandrake.security" "X-Loop: security@linux-mandrake.com")
 			     ("mail.mandrake.ipaddr" "X-Loop: ipaddr@linux-mandrake.com")
 			     ("mail.mandrake.future" "X-Loop: future@linux-mandrake.com")
+			     ("mail.mandrake.sparc" "X-Loop: sparc@linux-mandrake.com")
+			     ("mail.mandrake.ports" "X-Loop: ports@linux-mandrake.com")
 			     ("mail.mandrake.diskdrake" "X-Loop: diskdrake@linux-mandrake.com")
 			     ("mail.mandrake.oxchrpm" "X-Loop: oxchrpm@linux-mandrake.com")
 			     ("mail.mandrake.paris" "X-Loop: paris@linux-mandrake.com")
+			     ("mail.mandrake.policy" "X-Loop: policy@linux-mandrake.com")
+			     ("mail.mandrake.packages" "X-Loop: packages@linux-mandrake.com")
+			     ("mail.mandrake.tools" "X-Loop: tools@linux-mandrake.com")
+			     ("mail.mandrake.install" "X-Loop: install@linux-mandrake.com")
+			     ("mail.mandrake.ergonomics" "X-Loop: ergonomics@linux-mandrake.com")
+			     ("mail.mandrake.corpo" "X-Loop: corpo@linux-mandrake.com")
+			     ("mail.mandrake.kernel" "X-Loop: kernel@linux-mandrake.com")
+			     ("mail.mandrake.troll" "X-Loop: troll@linux-mandrake.com")
+			     ("mail.mandrake.gmp" "X-Loop: gmp@linux-mandrake.com")
+			     ("mail.mandrake.maintainers" "X-Loop: maintainers@linux-mandrake.com")
 			     ("mail.usb" "X-Mailinglist: linux-usb")
 			     ("mail.mico" "\\(mico\\|mico-devel\\)@vsb.informatik.uni-frankfurt.de")
 			     ("mail.gimp-developer" "gimp-developer@")
@@ -48,11 +77,20 @@
 			     ("mail.python-french" "^X-BeenThere: python@aful.org")
 			     ("mail.python-gui" "^X-BeenThere: gui-sig@python.org")
 			     ("mail.newsfeeds" "^X-BeenThere: newsfeeds@opensource.captech.com")
+			     ("mail.redhat.devel" "X-Loop: redhat-devel-list@redhat.com")
+			     ("mail.mosix" "X-list: mosix-list")
+			     ("mail.handhelds" "X-BeenThere: handhelds@handhelds.org")
+			     ("mail.nfs" "X-BeenThere: nfs@lists.sourceforge.net")
+			     ("mail.lsb" "X-Loop: lsb")
 			     ("mail.gene" "^\\(To\\|CC\\): .*gene[^@]*")
 			     ("mail.guile" "gel@cygnus.com\\|guile")
 			     ("mail.local" "^From: [^.]+$\\|^From: .*\\(dgac\\.fr\\|cena\\.fr\\)")
 			     ("mail.mbox.mandrake" "^\\(To\\|CC\\): .*flepied@mandrakesoft.com")
 			     ("mail.mandrake.cvs" "^X-CVS-module:")
+			     ("mail.wacom" "\\[wacom\\]")
+			     ("mail.rpmhelp" "rpmhelp@freezer-burn.org")
+			     ("mail.autofs" "Sender: owner-autofs@linux.kernel.org")
+			     ("mail.mandrake.cooker" "cooker@linux-mandrake.com")
 			     ("mail.mbox" "")
 			     )
       gnus-auto-expirable-newsgroups "mail"
@@ -112,5 +150,38 @@
 
 (add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)
 (add-hook 'gnus-startup-hook 'bbdb-insinuate-message)
+
+;; (add-hook 'gnus-article-display-hook `(lambda ()
+;;          (gnus-article-de-quoted-unreadable)
+;;          (gnus-article-emphasize)
+;;          (gnus-article-hide-boring-headers)
+;;          (gnus-article-hide-headers-if-wanted )
+;;          (gnus-article-hide-pgp)
+;;          (gnus-article-highlight-citation)
+;; 	 (gnus-article-date-local)
+;; ))
+
+(add-hook 'gnus-article-prepare-hook `(lambda ()
+         (gnus-article-de-quoted-unreadable)
+         (gnus-article-emphasize)
+         (gnus-article-hide-boring-headers)
+         (gnus-article-hide-headers-if-wanted )
+         (gnus-article-hide-pgp)
+         (gnus-article-highlight-citation)
+	 (gnus-article-date-local)
+))
+(setq message-cite-function 'message-cite-original-without-signature)
+
+(add-hook 'gnus-select-group-hook (function
+				   (lambda nil
+				     (setq bbdb/news-auto-create-p
+					   (or
+					    (string= "nnml:mail.mbox.mandrake" gnus-newsgroup-name)
+					    (string= "nnml:mail.mbox.xfree86" gnus-newsgroup-name))))))
+
+(setq mail-sources
+           '((file :path "/var/mail/flepied")))
+
+(setq message-dont-reply-to-names ".?lepied@")
 
 ;;; end of .gnus.el
