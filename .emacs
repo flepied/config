@@ -38,9 +38,11 @@
  	   rpm
 	   )
 
-(setq user-mail-address "flepied@mandrakesoft.com"
+(setq user-mail-address "lepied@videotron.ca"
       user-full-name "Frederic Lepied"
-      message-send-mail-function 'smtpmail-send-it)
+      ;message-send-mail-function 'smtpmail-send-it
+      ;smtpmail-smtp-server "smtp.wanadoo.fr"
+      )
 
 ;;============================================================================
 ;;============================================================================
@@ -64,6 +66,8 @@
 ;;============================================================================
 (if (fboundp 'set-language-environment)
     (set-language-environment "Latin-1"))
+;; for dired
+(setenv "LC_ALL" "C")
 
 ;;============================================================================
 ;;============================================================================
@@ -118,7 +122,16 @@
     '("From Eu.Org" . add-from-eu-org))
 )
 
-(add-hook 'message-setup-hook 'add-from-menu)
+(add-hook 'message-setup-hook
+	  (function (lambda()
+		      (add-from-menu)
+		      (add-hook 'message-mode-hook 'mc-install-write-mode))))
+
+(add-hook 'message-send-hook (function
+			      (lambda()
+				(call-interactively (function mc-sign)))))
+
+(setq mc-passwd-timeout 3600)
 
 (defun add-from (from)
   ""
@@ -169,7 +182,7 @@
 
 (and window-system
      (make-face 'font-lock-string-face)
-     (set-face-foreground 'font-lock-string-face "DarkGreen")
+     (set-face-foreground 'font-lock-string-face "Green")
      (make-face 'font-lock-reference-face)
      (set-face-foreground 'font-lock-reference-face "DarkBlue")
      (make-face 'font-lock-setter-face)
