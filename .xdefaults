@@ -24,10 +24,13 @@
         <Key>KP_Enter: string(0x0d)
 
 
-emacs*Background: DarkGrey
-emacs*Foreground: Black
-emacs*pointerColor: Black
-emacs*cursorColor: Black
+emacs.Foreground:			Black
+emacs.Background:			DarkGrey
+emacs*Background:			DarkGrey
+emacs.region.attributeForeground:	White
+emacs.region.attributeBackground:	SteelBlue
+emacs.pointerColor:                     Orchid
+emacs.cursorColor:                      Orchid
 emacs*bitmapIcon: on
 #emacs*font: fixed
 emacs.geometry: 115x60
