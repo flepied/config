@@ -2,7 +2,7 @@
 ;; Project         : Imagine
 ;; File            : .gnus.el
 ;; Type		   : -*- emacs-lisp -*-
-;; Version         : $Id: .gnus.el,v 1.4 2003-07-22 08:51:54 flepied Exp $
+;; Version         : $Id: .gnus.el,v 1.5 2003-08-19 05:03:29 flepied Exp $
 ;; Author          : Frederic Lepied
 ;; Created On      : Fri Aug 30 09:37:54 1996
 ;; Purpose         : 
@@ -102,7 +102,7 @@
 			     ("mail.zeroconf" ,(To "zeroconf@merit.edu"))
 			     ("mail.pleac" ,(To "pleac-discuss@lists.sourceforge.net"))
 			     ("mail.local" "^From: [^.]+$\\|^From: .*\\(dgac\\.fr\\|cena\\.fr\\)")
-			     ("mail.mbox.mandrake" ,(To "flepied@mandrakesoft.com"))
+			     ("mail.mbox.mandrake" "^\\([Cc][Cc]\\|[Tt][Oo]\\):.*[ ,\"<]flepied@mandrakesoft.com")
 			     ("mail.lads" ,(To "lads@lepied.com"))
 			     ("mail.canada" ,(To "canada@mandrakesoft.com"))
 			     ("mail.mbox.cvs" ,(To "cvs@mandrakesoft.com"))
@@ -134,7 +134,7 @@
       ;; Pour afficher le nombre d'articles dans la thread et pour cacher les threads
       ;; par défaut.
       gnus-summary-line-format "%U%R%z%I%((%3t)%[%4L: %-20,20a%]%) %s\n"
-      gnus-thread-hide-subtree t
+;      gnus-thread-hide-subtree t
 
       gnus-button-url 'w3-fetch
       gnus-asynchronous t
@@ -203,12 +203,12 @@
 ))
 (setq message-cite-function 'message-cite-original-without-signature)
 
-(add-hook 'gnus-select-group-hook (function
-				   (lambda nil
-				     (setq bbdb/news-auto-create-p
-					   (or
-					    (string= "nnml:mail.mbox.mandrake" gnus-newsgroup-name)
-					    (string= "nnml:mail.mbox.xfree86" gnus-newsgroup-name))))))
+;; (add-hook 'gnus-select-group-hook (function
+;; 				   (lambda nil
+;; 				     (setq bbdb/news-auto-create-p
+;; 					   (or
+;; 					    (string= "nnml:mail.mbox.mandrake" gnus-newsgroup-name)
+;; 					    (string= "nnml:mail.mbox.xfree86" gnus-newsgroup-name))))))
 
 (setq mail-sources
            '((file :path "/var/mail/flepied")))
