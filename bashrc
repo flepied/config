@@ -9,6 +9,7 @@ export IRCSERVER=${IRCSERVER-24.6.229.74}
 export PRINTER=${PRINTER-printer6}
 export SMTPSERVER=${SMTPSERVER-extmailfr}
 export CVS_RSH=${CVS_RSH=ssh}
+export RPM=${RPM=$HOME/RPM}
 
 PATH="$HOME/bin:/usr/local/bin:/usr/X11R6/bin:/usr/bin:/bin:/usr/games:."
 LESS=-MM
