@@ -17,4 +17,11 @@ fi
 
 cp -v .ssh/config $HOME/.ssh/
 
+# icewm specific
+if [ ! -d $HOME/.icewm ]; then
+    mkdir $HOME/.icewm
+fi
+
+cp -v .icewm/preferences $HOME/.icewm/
+
 # install ends here
