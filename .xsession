@@ -1,5 +1,8 @@
 #!/bin/sh
 
+BROWSER=mymozilla
+export BROWSER
+
 source $HOME/.bashrc
 
 if [ -n "$SSH_AUTH_SOCK" -a `uname -n` = skywalker.mandrakesoft.com ]; then
@@ -32,6 +35,10 @@ fi
 if type xchat > /dev/null 2>&1; then
     xchat&
 fi
+
+rox --pinboard=MonPunaiseur
+
+gaim&
 
 exec icewm
 exec xterm
