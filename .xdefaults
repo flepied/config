@@ -1,0 +1,60 @@
+#ifdef COLOR
+*customization: -color
+#endif
+
+*vt100.geometry: 80x25
+*vt100.Translations: #override\n\
+        <Key>BackSpace: string(0x7f)\n\
+        Ctrl<Key>Prior: string(0x1b) string("[40~")\n\
+        Ctrl<Key>Next: string(0x1b) string("[41~")\n\
+        Ctrl<Key>KP_Prior: string(0x1b) string("[40~")\n\
+        Ctrl<Key>KP_Next: string(0x1b) string("[41~")\n\
+        Ctrl<Key>Home: string(0x1b) string("[42~")\n\
+        Ctrl<Key>End: string(0x1b) string("[43~")\n\
+        Ctrl<Key>KP_Home: string(0x1b) string("[42~")\n\
+        Ctrl<Key>KP_End: string(0x1b) string("[43~")\n\
+        <Key>Delete: string(0x1b) string("[3~")\n\
+        <Key>Insert: string(0x1b) string("[2~")\n\
+        <Key>Home: string(0x1b) string("[1~")\n\
+        <Key>End: string(0x1b) string("[4~")\n\
+        :<Key>KP_Delete: string(0x1b) string("[3~")\n\
+        :<Key>KP_Insert: string(0x1b) string("[2~")\n\
+        :<Key>KP_Home: string(0x1b) string("[1~")\n\
+        :<Key>KP_End: string(0x1b) string("[4~")\n\
+        <Key>KP_Enter: string(0x0d)
+
+
+emacs*Background: DarkGrey
+emacs*Foreground: Black
+emacs*pointerColor: Black
+emacs*cursorColor: Black
+emacs*bitmapIcon: on
+#emacs*font: fixed
+emacs.geometry: 115x60
+
+Seyon.modems: /dev/modem
+
+xterm*background: Darkgrey
+xterm*foreground: Black
+xterm*cursorColor: Black
+xterm*reverseVideo: false
+xterm*scrollBar: true
+xterm*reverseWrap: true
+xterm*font: fixed
+xterm*fullCursor: true
+xterm*scrollTtyOutput: on
+xterm*scrollKey: on
+xterm*titleBar: false
+
+xterm_color*background: Black
+xterm_color*foreground: White
+xterm_color*cursorColor: White
+xterm_color*reverseVideo: false
+xterm_color*scrollBar: true
+xterm_color*saveLines: 4096
+xterm_color*reverseWrap: true
+xterm_color*font: fixed
+xterm_color*fullCursor: true
+xterm_color*scrollTtyOutput: on
+xterm_color*scrollKey: on
+xterm_color*titleBar: false

@@ -1,0 +1,842 @@
+# Emacs, this is -*- Mode: Tcl -*-
+#
+# This is an example configuration file for tkirc. Edit it and
+# place it as '.tkircrc' in your home directory. Please be careful!
+# This configuration file is handled like the main-script of tkirc.
+# Syntax errors you made here can finish your tkirc-process. =:^)
+#
+# Last modified:    12.11.97 (atte)
+
+
+#############################################################################
+#                                                                           #
+#  Copyright (C) 1996-97  Andreas Gelhausen <atte@gecko.North.DE>           #
+#                                                                           #
+#  This program is free software; you can redistribute it and/or modify     #
+#  it under the terms of the GNU General Public License as published by     #
+#  the Free Software Foundation; either version 2 of the License, or        #
+#  (at your option) any later version.                                      #
+#                                                                           #
+#  This program is distributed in the hope that it will be useful,          #
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of           #
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            #
+#  GNU General Public License for more details.                             #
+#                                                                           #
+#  You should have received a copy of the GNU General Public License along  #
+#  with this program; if not, write to the Free Software Foundation, Inc.,  #
+#  59 Temple Place - Suite 330, Boston, MA  02111-1307, USA                 #
+#                                                                           #
+#############################################################################
+
+
+#  ####   ###  ####  #####     ###  #   # #####
+#  #   # #   # #   #   #      #   # ##  # #
+#  ####  ##### ####    #      #   # # # # ###
+#  #     #   # #  #    #      #   # #  ## #
+#  #     #   # #   #   #       ###  #   # #####
+#
+#
+#  This part includes the basics of tkirc's configuration. Please
+#  read (and maybe edit) it before you start tkirc with these
+#  parameters!
+
+
+# normal text
+set normal_style "-font -*-helvetica-medium-r-*-*-12-*-*-*-*-*-iso8859-1"
+
+# bold text
+set bold_style    "-font -*-helvetica-bold-r-*-*-12-*-*-*-*-*-iso8859-1"
+
+# Some certain IRC clients support the escape codes '\x03' or '\11'.
+set special_style "-font -*-helvetica-medium-o-*-*-12-*-*-*-*-*-iso8859-1"
+
+# With 'url_style' you can highlight detected URLs (addresses for
+# the World Wide Web) in the text fields.
+set url_style     "-borderwidth 1 -relief raised -background #cacaca"
+
+# With 'msgid_style' you can highlight detected message IDs in 
+# the text fields.
+set msgid_style   "-borderwidth 1 -relief raised -background #cacaca"
+
+# '/search <text>' highlights all occurrences of '<text>' within the
+# text field and jumps to the next. If '<text>' can not be found, you
+# will hear a beep.
+set search_style  "-background #880000 -foreground white"
+
+# The following variables allow you to select your preferred fonts
+# for all kinds of widgets.
+#set button_font "-*-helvetica-medium-r-*-*-12-*-*-*-*-*-iso8859-1"
+#set checkbutton_font "-*-helvetica-medium-r-*-*-12-*-*-*-*-*-iso8859-1"
+#set entry_font "-*-helvetica-bold-r-*-*-12-*-*-*-*-*-iso8859-1"
+#set label_font "-*-helvetica-medium-r-*-*-12-*-*-*-*-*-iso8859-1"
+#set listbox_font "-*-helvetica-medium-r-*-*-12-*-*-*-*-*-iso8859-1"
+#set menu_font "-*-helvetica-medium-r-*-*-12-*-*-*-*-*-iso8859-1"
+#set menubutton_font "-*-helvetica-medium-r-*-*-12-*-*-*-*-*-iso8859-1"
+#set radiobutton_font "-*-helvetica-medium-r-*-*-12-*-*-*-*-*-iso8859-1"
+#set text_font "-*-helvetica-bold-r-*-*-12-*-*-*-*-*-iso8859-1"
+
+# Here you can set the default geometry of your windows. You can
+# append the window number to the variable's name.
+set geometry      "543x205"
+set geometry1     "543x250"
+
+# Do you want to set the geometry of certain kinds of tkirc's windows?
+#set geometry_kick     "495x268"
+#set geometry_urls     "495x121+552+464"
+#set geometry_msgs     "495x121+552+612"
+#set geometry_notifies "116x205+552+232"
+
+# Max entries of the history you can use with cursor up and down.
+set history_max 20
+
+# Max number of lines you will see in a text field.
+set lines_max   400
+
+# Where can tkirc find the ircII client?
+#set ircpath     "/usr/local/bin/irc"
+
+# The following variables are boolean switches. They should be
+# sufficient explained through their names. Set them to '1' to
+# turn the options on, else '0'.
+set beep_on_message_when_present             1
+set beep_on_message_when_away                0
+set beep_on_notice_when_present              1
+set beep_on_notice_when_away                 0
+set beep_on_invite_when_present              1
+set beep_on_invite_when_away                 0
+set beep_on_ctrlG_when_present               0
+set beep_on_ctrlG_when_away                  0
+set show_address_on_message_when_present     0
+set show_address_on_message_when_away        1
+set show_address_on_message_in_logfile       0
+set show_address_on_notice_when_present      0
+set show_address_on_notice_when_away         1
+set show_address_on_notice_in_logfile        0
+set show_time_on_private_when_present        0
+set show_time_on_private_when_away           1
+set show_time_on_public_when_present         0
+set show_time_on_public_when_away            1
+
+# If you often work on other screens, then use the following two
+# variables to get a new chat window through arriving messages
+# or notices.
+set chat_window_on_message_when_present      1
+set chat_window_on_message_when_away         1
+set chat_window_on_notice_when_present       1
+set chat_window_on_notice_when_away          1
+
+# A request window will be opened on certain events.
+set request_on_dcc_chat  1
+set request_on_dcc_send  1
+set request_on_invite    1
+set request_on_kick      1
+
+# Set silence to 1 and you won't hear any beep (included CTRL-Gs). 
+set silence     0
+
+# The following variables can be set for all windows or just for a 
+# single one. You can append the window number to the variable's name.
+set auto_popup                    1
+set hide_joins                    0
+set hide_leaves                   0
+set hide_signoffs                 0
+set show_commandline              1
+#set show_commandline1             0
+set show_topic                    1
+#set show_topic1                   0
+set show_userlist                 1
+#set show_userlist1                0
+set use_margin                    0
+#set use_margin1                   1
+set display_types                 0
+#set display_types1                1
+set sort_userlist_alphabeticly    1
+set sort_userlist_by_channelmodes 1
+
+# It's also possible to set the width of the margin. This value only 
+# takes effect, if 'use_margin' is set to '1'.
+set margin_size        70
+
+# If you also want to see the beeps, you can use 'beeptext'.
+# Here some examples for different text styles:
+#set beeptext "\x02\¤\x02" ; # \x02 to turn on/off 'bold'
+#set beeptext "\x16\¤\x16" ; # \x16 to turn on/off 'reverse'
+#set beeptext "\x1f\¤\x1f" ; # \x16 to turn on/off 'underlined'
+
+# The variable 'escape_sign' allows you to choose your own
+# escape-sign. Default value is "^". You can use escape-codes and
+# special characters with it.
+# Usage:
+#        ^b : bold            ^u : underlined    ^r : reverse
+#        ^s : special         ^g : beep          ^x## : hex values
+set escape_sign "^"
+
+# The following list allows you to set your own key bindings for
+# tkirc's entry widgets. If you don't know the exact expression for
+# the key bindings, add the line '{<KeyPress> {puts stdout "%K"}}'
+# and start tkirc within a xterm. Then you will see the correct
+# expressions for all pressed keys.
+set entry_bindings {
+    {<Control-u> {%W delete 0 end}}
+    {<Alt-Shift-exclam> {%W insert insert "¡"}}
+}
+
+# Do you want to see one netsplit-message instead of many 
+# signoff-messages on a detected netsplit?
+set react_to_netsplits  1
+
+# If you want an alarm on possible channel takeovers, then set
+# 'react_to_takeover' to something different than '0'. tkirc will
+# sound an alarm, if more than or exact <value of takeover_users> users
+# of the same host join a channel in <value of takeover_period> seconds.
+# tkirc neither bans nor kicks for itself. You have to confirm each
+# action against channel takeovers within the request window.
+# The elements of 'takeover_kick_reasons' are used as messages for the
+# many kick-commands on a detected channel-takeover-try.
+# The host address looks like <element1>.<element2>... If you have
+# some elements (like 'slip-12-34-56' for example), you can add a
+# pattern to 'takeover_star_patterns' (e.g. 'slip*'). Matching
+# address elements are set to '*' within the address to ban.
+# tkirc scans the elements from left to right. If an address element
+# don't match any pattern of 'takeover_star_patterns', the other
+# elements won't be compared.
+set react_to_takeover       0
+set takeover_users          3
+set takeover_period       300
+set takeover_kick_reasons {
+    "Ping!" "Pong!" "Peng!" "*plopp*" "*zupf*"
+}
+set takeover_star_patterns {
+    "slip*" "ppp*" "dial*"
+}
+
+# Some CTCP-commands allow automatic response of your ircII. tkirc
+# will try to prevent that ircII floods the IRC-server, if you set
+# 'react_to_ctcp_flood' to '1'. If flooding from a certain host is
+# detected, all CTCPs and INVITEs from that host are ignored for
+# <value of host_flood_ignore_period> seconds. On flooding from
+# many different users/hosts tkirc ignores _all_ CTCPs and INVITEs
+# for <value of global_flood_ignore_period> seconds.
+set react_to_ctcp_flood          1
+set host_flood_ignore_period   300
+set global_flood_ignore_period 120
+
+# set by the env variable IRCNICK
+# Here you can choose your preferred nicknames.
+#set preferred_nicknames {
+#    "Fred" "Frederic"
+#}
+
+# Do you have channels you often join?
+set preferred_channels {
+    "#ics" "#pii" "#Debian" "#Linux" "#Salsa"
+}
+
+# Preferred values for the signoff command.
+set preferred_signoffmessages {
+    "May the source be with you" "End of transmission" "I'll be back!" "Killed by \$server"
+}
+
+# Preferred values for the part or leave command.
+set preferred_partmessages {
+    "be right back" "be back later"
+}
+
+# Here you can set some reasons for the away command.
+set preferred_awayreasons {
+    "experimental room" "beep me" "away from keyboard" "Zzz..." "*busy*"
+}
+
+# If you want to kick someone, you can choose between the
+# following default kick messages.
+set preferred_kickreasons {
+    "Play outside!" "Try it again!" "You're out!"
+}
+
+# Some servers and their port numbers...
+set preferred_servers {
+    {"pc-b3-1" 6667} {"irc.debian.org" 6667} {"SlowRide.netpirate.org" 6667}
+    {"irc.linpeople.org" 6667} {"irc.blackdown.org" 6667}
+    {"irc.fu-berlin.de" 6667} {"irc.colorado.edu" 6667}
+    {"irc.texas.net" 6667} {"irc.funet.fi" 6667}
+}
+
+# Through '/notify <nick>' it's possible to notify the 
+# signon/signoff of a certain user. The following list allows
+# you to set address pattern (second part of an element) for
+# single nicks (first part of an element). If a user has the
+# right nick but an address that doesn't match the pattern,
+# tkirc won't show you a signon-/signoff-message.
+set notifies {
+    {"lecoanet"    "lecoanet*"}
+    {"Jean-Luc"    "vinot*"}
+    {"fab"    "boutet*"}
+    {"Dominique"    "ruiz*"}
+}
+
+# New versions of the IRC server doesn't transmit away-messages
+# to other servers and users connected there. If someone wants to
+# send you a private message and he is connected to another IRC 
+# server than you, he won't receive an away-message from you. Set 
+# variable 'send_away_notice' to '1' and each user who sends you
+# you a private message/action will receive a notice like
+# "+nick+ nick is away: <awayreason>". The awayreason is the same
+# you specified through command '/away'. The other user just 
+# receive this away-notice from you once in a quarter hour except
+# you set a new away-message through command '/away'.
+set send_away_notice 1
+
+# Many people forget to mark or unmark themselves away. The following
+# variables allows you to comission tkirc to do this job.
+# Set 'auto_mark_away' to something different than '0' and after 
+# <auto_away_period> seconds tkirc will automatically mark you away
+# with the message "<auto_away_text>".
+# For variable 'auto_unmark_away' you can choose between the following
+# 3 values:
+#        0 : You will never automatically be unmarked.
+#        1 : You will only be unmarked after pressing <Return>, if 
+#            tkirc has _automatically_ marked you away before.
+#        2 : Press <Return> and you will always be unmarked, if
+#            you was marked away before.
+set auto_mark_away    0
+set auto_away_period  1800
+set auto_away_text    "not behind the keyboard"
+set auto_unmark_away  2
+
+# If you want to use netscape for your URLs, try this!
+set on_urlclick {netscape -remote OpenURL($url)}
+
+# If you know how you can get the message visible on screen...
+set on_msgclick {echo tkirc: You have selected message id '$msgid'.}
+#set on_msgclick {showarticle your.nntp.host "$msgid"}
+
+# The following procedures ('on_xxx()') will be executed at different
+# IRC events (xxx). Now you are able to create your own scripts
+# for tkirc.
+proc on_join { } {
+  global on_args
+#  print2text $on_args(window) "+++ $on_args(nick) ($on_args(address)) has joined channel $on_args(channel)"
+}
+
+proc on_leave { } {
+  global on_args
+#  print2text $on_args(window) "+++ $on_args(nick) ($on_args(address)) has left channel $on_args(channel) ($on_args(message))"
+}
+
+proc on_signoff { } {
+  global on_args
+#  print2text $on_args(window) "+++ $on_args(nick) ($on_args(address)) has signed off ($on_args(message))"
+}
+
+proc on_topic { } {
+  global on_args
+#  print2text $on_args(window) "+++ $on_args(nick) ($on_args(address)) has changed the topic on channel $on_args(channel) to $on_args(topic)"
+}
+
+proc on_modechange { } {
+  global on_args
+#  print2text $on_args(window) "+++ $on_args(nick) ($on_args(address)) performs a modechange to $on_args(to): mode='$on_args(mode)', argument='$on_args(argument)'"
+}
+
+proc on_nick { } {
+  global on_args
+#  print2text $on_args(window) "+++ $on_args(nick) ($on_args(address)) is now known as $on_args(newnick)"
+}
+
+proc on_kick { } {
+  global on_args
+#  print2text $on_args(window) "+++ $on_args(nick) ($on_args(address)) has kicked $on_args(victim) off channel $on_args(channel) ($on_args(message))"
+}
+
+proc on_ctcp { } {
+  global on_args
+#  print2text $on_args(window) "+++ $on_args(nick) ($on_args(address)) has sent a CTCP-$on_args(command) to $on_args(to) ($on_args(rest))"
+}
+
+proc on_ctcpreply { } {
+  global on_args
+#  print2text $on_args(window) "+++ $on_args(nick) ($on_args(address)) has replied CTCP-$on_args(command) with: $on_args(rest)"
+}
+
+proc on_dcc { } {
+  global on_args
+#  print2text $on_args(window) "+++ $on_args(nick) ($on_args(address)) has sent a DCC-$on_args(type) ($on_args(rest))"
+}
+
+proc on_privaction { } {
+  global on_args
+#  print2text $on_args(window) "+++ action to you: $on_args(nick) ($on_args(address)) $on_args(rest)"
+}
+
+proc on_pubaction { } {
+  global on_args
+#  print2text $on_args(window) "+++ action to $on_args(to): $on_args(nick) ($on_args(address)) $on_args(rest)"
+}
+
+global popupid
+set popupid 1
+
+proc popup {title text} {
+    global popupid
+    set popupid [expr $popupid + 1]
+    format "%d" $popupid
+    set name ".$popupid"
+    toplevel $name
+    wm title $name $title
+    message $name.msg -text $text
+    pack $name.msg
+
+    bind $name.msg <1> "destroy $name"
+}
+
+proc on_privmessage { } {
+  global on_args
+#  print2text $on_args(window) "+++ message to you: $on_args(nick) ($on_args(address)) $on_args(rest)"
+  popup "Private Message" "From: $on_args(nick)\n\n$on_args(rest)"
+}
+
+proc on_pubmessage { } {
+  global on_args
+#  print2text $on_args(window) "+++ message to $on_args(to): $on_args(nick) ($on_args(address)) $on_args(rest)"
+}
+
+proc on_servermessage { } {
+  global on_args
+#  print2text $on_args(window) "+++ message to $on_args(to) from server $on_args(address): $on_args(rest)"
+}
+
+proc on_privnotice { } {
+  global on_args
+#  print2text $on_args(window) "+++ notice to you: $on_args(nick) ($on_args(address)) $on_args(rest)"
+}
+
+proc on_pubnotice { } {
+  global on_args
+#  print2text $on_args(window) "+++ notice to $on_args(to): $on_args(nick) ($on_args(address)) $on_args(rest)"
+}
+
+proc on_servernotice { } {
+  global on_args
+#  print2text $on_args(window) "+++ notice to $on_args(to) from server $on_args(address): $on_args(rest)"
+}
+
+proc on_invite { } {
+  global on_args
+#  print2text $on_args(window) "+++ $on_args(nick) ($on_args(address)) invites you to channel $on_args(channel)"
+}
+
+proc on_notify_signon { } {
+  global on_args
+#  print2text $on_args(window) "+++ Signon by $on_args(nick) ($on_args(address)) detected"
+}
+
+proc on_notify_signoff { } {
+  global on_args
+#  print2text $on_args(window) "+++ Signoff by $on_args(nick) ($on_args(address)) detected"
+}
+
+# If someone joins and leaves a channel within <channelhop_period> seconds,
+# the procedure 'on_channelhop' will be executed.
+set channelhop_period 20
+
+proc on_channelhop { } {
+  global on_args
+#  print2text $on_args(window) "+++ $on_args(nick) ($on_args(address)) was just $on_args(period) seconds on channel $on_args(channel)."
+}
+
+# The TAB-key completes the nicks of the current channel and the
+# elements of this list.
+set words_to_complete {
+  "/away " "/baninfos " "/clear" "/ctcp " "/join " "/kick * "
+  "/leave *" "/lusers" "/msg" "/names " "/notify " "/quit " "/search "
+  "/splits" "/topic " "/whois "
+  "#tkirc" "http://home.pages.de/~tkirc/"
+}
+
+# If neither a nick nor an element of 'words_to_complete' could be found
+# for completion, this list of aliases will be searched. Through the usage
+# of TAB the certain alias will be replaced. Each element of the following
+# list includes the alias and its replacement:
+set tab_aliases {
+    {"USA" "United States of Amerika"}
+    {"FRG" "Federal Republic of Germany"}
+}
+
+# If the just completed nick is the first word in your command 
+# line, this suffix will be added.
+set nick_completion_suffix ": "
+
+# Each kind of text-message can have its own text style.
+# The elements of the follwing list include regular expression,
+# text-style, command and comment.
+#
+# Example: Set command to "bell" and you will get a beep on each
+#          message of that kind.
+set user_styles {
+  {
+    {^(\*|\+|\*\*|\=)».*}
+    {-foreground #00aa00}
+    {}
+    {# send private message/notice/action}
+  }
+
+  {
+    {^((<|-)$me(>|-\	|»|\+)|\* $me(	|»|\+)).*}
+    {-foreground #007700}
+    {}
+    {# send message/notice/action to channel}
+  }
+
+  {
+    {^(\*|\+|\*\* |\=)[^ \*\+].*}
+    {-foreground #dd0000}
+    {}
+    {# receive private message/notice/action}
+  }
+
+  {
+    {^(\*\*\*|\[ notify \]|\[ server \]).(Signon|Signoff|NoteServ) .*}
+    {-foreground #cc9900}
+    {}
+    {# notify messages}
+  }
+
+  {
+    {^(.*[^a-zA-Z0-9]|)($me|ircii)(|[^a-zA-Z0-9].*)$}
+    {-foreground #aa0000}
+    {}
+    {# /me or ircII}
+  }
+
+  {
+    {^(\( |)([0-9][0-9][0-9])(| \)).*}
+    {-foreground #440044}
+    {}
+    {# numerics}
+  }
+
+  {
+    {^(\*\*\*|\[ signoff \]).+ has signed off \([^ ]+\.[^ .]+ [^ .]+\.[^ ]+\)$}
+    {-foreground #ff5500}
+    {}
+    {# faked netsplit-signoff}
+  }
+
+  {
+    {^(\*\*\*.|\[ )Net(split|join).*}
+    {-foreground #ff5500}
+    {}
+    {# netsplit or netjoin}
+  }
+
+  {
+    {^(\×\×\×|\+\+\+|\[ (alert|error|failure|note|warning) \]).*}
+    {-foreground #aa0000}
+    {}
+    {# this program wants to tell you something}
+  }
+
+  {
+    {^(\*\*\*|\[ ).*}
+    {-foreground #000066}
+    {}
+    {# three stars messages}
+  }
+}
+
+# tkirc doesn't pay regards to file '~/.ircrc', because ircII
+# will be executed with option '-q'. If you want to execute 
+# some commands of 'ircII' after starting, you have to do it
+# here within the procedures 'on_tkircstart', 'on_ircIIstart' and
+# 'on_connect'.
+#
+# With procedure 'send2irc' you can directly send any texts to
+# ircII. But if you directly send "/join #test" to ircII, tkirc has
+# NO information about it. Therefore it won't know the window for
+# the channel. You should prefer procedure 'send2tkirc'!
+#
+# The usage of procedure 'send2tkirc' will have the same
+# effect as typing a command within tkirc's commandline. 
+#
+# 'send2tkirc' needs two parameters:
+#       1. window number
+#       2. text to send
+
+# 'on_tkircstart' will be executed just after opening window 0.
+# At this moment ircII is not running and therefore you don't have
+# a connection to an IRC-server! Logfiles and additional windows can
+# be opened here for example.
+proc on_tkircstart { } {
+#  send2tkirc 0 "/msglog ~/messagelog.tkirc -d"
+#  send2tkirc 0 "/newwin"
+}
+
+# Procedure 'on_ircIIstart' will always be executed just behind starting
+# ircII. Here you should set some of ircII's variables and define your
+# aliases. You are not connected to an IRC-server at this moment. Please
+# see the examples below!
+proc on_ircIIstart { } {
+  send2irc "/set DISPLAY OFF"
+  send2irc "/set AUTO_WHOWAS ON"
+  send2irc "/set TRANSLATION LATIN_1"
+  send2irc "/set SHOW_AWAY_ONCE on"
+
+  # How to use the timer:
+  #send2irc {/on #^timer 0 "*:00" time}
+
+  send2irc "/notify atte"
+  send2irc {/alias think /say . o O \( $0- \)}
+  send2irc "/set USER_INFORMATION No infos here! =8^)"
+  send2irc "/set DISPLAY ON"
+}
+
+# 'on_connect' will be executed just before you usually get the 'Message
+# Of The Day' from your IRC-server. Here you can set your usermodes and
+# join your preferred channels.
+proc on_connect { } {
+  global server nickname win
+
+  # Do you want to be invisible?
+  #send2irc "/mode $nickname +i"
+
+  puts $server
+
+  if {$server == "pc-b3-1.cenaath.cena.dgac.fr" && $nickname == "Fred"} {
+      # Maybe you want to join channel #tkirc in window 0:
+      send2tkirc 0 "/wjoin #linux"
+      send2tkirc 0 "/wjoin #ics"
+      send2tkirc 0 "/wjoin #salsa"
+  } else {
+      if {$server == "SlowRide.netpirate.org"} {
+	  send2tkirc 0 "/wjoin #mandrake"
+      }
+  }
+}
+
+
+#  ####   ###  ####  #####    ##### #     #  ### 
+#  #   # #   # #   #   #        #   #     # #   #
+#  ####  ##### ####    #        #   #  #  # #   #
+#  #     #   # #  #    #        #   #  #  # #   #
+#  #     #   # #   #   #        #    ## ##   ### 
+#
+#
+#  This part includes additional commands and procedures, you
+#  don't need to understand. If you just wanted to modify the
+#  basics of tkirc's configuration, you should stop here!
+#  But if you have some knowledge of programming with Tcl/Tk,
+#  feel free to continue! =:^)
+#
+#  If you want to add your own Tcl/Tk code, please do that in 
+#  this part of your .tkircrc and don't touch the main program
+#  'tkirc'!
+#
+#  Be careful by using tkirc's private variables and arrays, 
+#  because they will maybe altered in future versions!
+
+
+# remplacer user par votre nickname! attention de ne pas depasser les
+# 9 caractères possibles pou un nickname, en tenant compte des --
+
+proc xlock {winnum} {
+    global nickname
+    set nick $nickname
+    set nickname "$nickname-"
+    send2tkirc $winnum "/nick $nickname"
+    send2tkirc $winnum "/away locked screen"
+    exec "xlock"
+    send2tkirc $winnum "/away"
+    set nickname "$nick"
+    send2tkirc $winnum "/nick $nickname"
+}
+
+# attention cette procédure existe peut-être déjà.
+# il faudra donc la modifier...
+proc add_to_menu_line {menupath num} {
+  set mb "$menupath.menubutton1"
+  if [winfo exists $mb] {
+    pack forget $mb ; destroy $mb
+  }
+  Menubutton $mb -text "Private" -menu $mb.menu -bd 0 -underline 2
+  Menu $mb.menu
+  $mb.menu add command -label "xlock" -command "xlock $num"
+
+  pack $mb -side left -pady 0 -ipady 0
+}
+# # The procedure 'add_to_menu_line()' allows you to add something
+# # to tkirc's menu lines you can find in each main window.
+# # Here you can find examples for your own menu entries.
+# proc add_to_menu_line {menupath num} {
+#   set mb "$menupath.menubutton1"
+#   if [winfo exists $mb] {
+#     pack forget $mb ; destroy $mb
+#   }
+#   Menubutton $mb -text "Private" -menu $mb.menu -bd 0 -underline 2
+#   Menu $mb.menu
+# 
+#   $mb.menu add checkbutton -label "example 1" -variable example_1 \
+#     -command "print2text $num \"+++ You've selected 'example 1' within window $num. -- Value of variable 'example_1' is '\$example_1'.\""
+#   $mb.menu add command -label "example 2" \
+#     -command "print2text $num \"+++ You've selected 'example 2' within window $num. -- tkirc was started at \$startdate.\""
+# 
+#   $mb.menu add separator
+# 
+#   $mb.menu add cascade -label "listen to" -menu $mb.menu.lstn
+#   Menu $mb.menu.lstn
+#   foreach x "&CHANNEL &ERRORS &HASH &KILLS &LOCAL &NOTICES &NUMERICS &SERVERS" {
+#     $mb.menu.lstn add command -label "$x" -command "listen_to_channels $num $x"
+#   }
+# 
+#   pack $mb -side left -pady 0 -ipady 0
+# }
+
+# Do you want to write your own IRC-commands and to use them within
+# tkirc? That's no problem. =:^)
+#
+# Each entry of 'private_commands' has two elements:
+#   1. command name, if you want to use it via command line
+#   2. name of the procedure that should be called by typing "/<command>"
+#
+# Your procedures must support the two parameters 'winnum' and
+# 'arguments'.
+#
+# Please see the following examples and just test them!
+
+set private_commands {
+    {rot13 code_with_rot13}
+    {k kick_fast}
+    {tcl execute_tcl_command}
+    {listen listen_to_channels}
+    {where where_is}
+}
+
+proc code_with_rot13 {winnum arguments} {
+  set abc "abcdefghijklmnopqrstuvwxyz"
+  set ABC "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  global crapwindow
+
+  set len [llength "$arguments"]
+  if {$len < 1} {
+    print2text $crapwindow "+++ Usage: /rot13 <message>"
+    return
+  }
+  set newline ""
+  for {set i 0} {$i < [string length "$arguments"]} {incr i} {
+    set char "[string index "$arguments" $i]"
+    set j [string first "$char" "$abc"]
+    if {$j != -1} {
+      append newline "[string index "$abc" [expr ($j+13)%26]]"
+      continue
+    }
+    set j [string first "$char" "$ABC"]
+    if {$j != -1} {
+      append newline "[string index "$ABC" [expr ($j+13)%26]]"
+      continue
+    }
+    append newline "$char"
+  }
+  print2text $winnum "+++ rot13: $newline"
+}
+
+proc kick_fast {winnum arguments} {
+  global crapwindow
+
+  set random_kick_messages {
+      "Go away!" "CU" "Adios" "Uuuiii" "You're ^bout^b!" "Strike!"
+  }
+
+  set len [llength "$arguments"]
+  if {$len < 1} {
+    print2text $crapwindow "+++ Usage: /k <nick> \[<message>\]"
+  } elseif {$len == 1} {
+    send2tkirc $winnum "/kick * $arguments [lindex "$random_kick_messages" [expr [clock seconds] % [llength "$random_kick_messages"]]]"
+  } else {
+    send2tkirc $winnum "/kick * $arguments"
+  }
+}
+
+proc execute_tcl_command {winnum arguments} {
+  if [catch {uplevel 0 $arguments} result] {
+    print2text $winnum "+++ Executing '$arguments' failed with: $result"
+  } else {
+    print2text $winnum "+++ Executing '$arguments' yields '$result'"
+  }
+}
+
+proc listen_to_channels {winnum arguments} {
+  set len [llength "$arguments"]
+  if {$len < 1} {
+    global crapwindow
+    print2text $crapwindow "+++ Usage: /listen <channel1>\[,<channel2>\[...\]\]"
+    print2text $crapwindow "+++ Channels for server messages: &CHANNEL &ERRORS &HASH &KILLS &LOCAL &NOTICES &NUMERICS &SERVERS"
+    return
+  } else {
+    set wnum [MainWindow -3]
+    foreach x "[split "$arguments" ","]" {
+      send2tkirc $wnum "/join $x"
+    }
+  }
+}
+
+proc where_is {winnum arguments} {
+  # The joined channels will be searched for a certain nick or users
+  # with matching addresses. Notice that tkirc just automatically
+  # know the address of each user who has joined behind yourself!
+  global crapwindow chan
+
+  if {[llength "$arguments"] != 1} {
+    print2text $crapwindow "+++ Usage: /where \[<nick>|<addresspattern>\]"
+    return
+  }
+  if {[string first "." "$arguments"] == -1} {
+    # Nick
+    set where ""
+    foreach x "$chan(list)" {
+      set j [lsearch "$chan($x,nicks)" "[expand "$arguments"]"]
+      if {$j != -1} {
+	append where "$chan($x) "
+      }
+    }
+    if {[llength "$chan(list)"]} {
+      if {"$where" == ""} {
+	send2irc "/whois $arguments"
+      } else {
+	print2crap "+++ $arguments is on: $where"
+      }
+    } else {
+      send2irc "/whois $arguments"
+    }
+  } else {
+    # Addresspattern
+    set done ""
+    set i 0
+    foreach x "$chan(list)" {
+      set alen [llength "$chan($x,addresses)"]
+      for {set j 0} {$j < $alen} {incr j} {
+	if [strmatch "$arguments" "[lindex "$chan($x,addresses)" $j]"] {
+	  # Die Adresse paßt.
+	  set nick "[lindex "$chan($x,nicks)" $j]"
+	  set enick "[expand "$nick"]"
+	  if {[lsearch "$done" "$enick"] != -1} {
+	    continue
+	  }
+	  append done "$enick "
+	  set where "$chan($x)"
+	  foreach y "[lrange "$chan(list)" [expr $i+1] end]" {
+	    if {[lsearch "$chan($y,nicks)" "$enick"] != -1} {
+	      append where " $chan($y)"
+	    }
+	  }
+	  print2text $crapwindow "+++ $nick ([lindex "$chan($x,addresses)" $j]) is on: $where"
+	}
+      }
+      incr i
+    }
+  }
+}
+
+#  ##### #   # #####    ##### #   # ####
+#    #   #   # #        #     ##  # #   #
+#    #   ##### ###      ###   # # # #   #
+#    #   #   # #        #     #  ## #   #
+#    #   #   # #####    ##### #   # ####
