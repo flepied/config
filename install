@@ -1,6 +1,6 @@
 #!/bin/sh
 
-for f in $HOME/config/.??*; do
+for f in `ls $HOME/config/.??*|grep  -v '~$'`; do
     base=`basename $f`
     echo "installing $f in $HOME/$base"
     rm -f $HOME/$base

@@ -161,7 +161,7 @@
 
 (and window-system
      (make-face 'font-lock-string-face)
-     (set-face-foreground 'font-lock-string-face "DarkGreen")
+     (set-face-foreground 'font-lock-string-face "Green")
      (make-face 'font-lock-reference-face)
      (set-face-foreground 'font-lock-reference-face "DarkBlue")
      (make-face 'font-lock-setter-face)
