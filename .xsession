@@ -2,7 +2,7 @@
 
 source $HOME/.bashrc
 
-if [ `uname -n` = mofftarkin.mandrakesoft.com ]; then
+if [ -n "$SSH_AUTH_SOCK" -a `uname -n` = skywalker.mandrakesoft.com ]; then
     if [ -f $HOME/.fetchmail.pid ]; then
         read pid sec < $HOME/.fetchmail.pid
         if [ ! -r /proc/$pid ]; then
