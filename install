@@ -1,12 +1,20 @@
 #!/bin/sh
 
-for f in `ls $HOME/config/.??*|grep  -v '~$'`; do
-    base=`basename $f`
-    echo "installing $f in $HOME/$base"
+cd $HOME/config
+
+for base in `find . -name '.??*' -type f |grep  -v '.#\|~$' | sed 's@^./@@g'`; do
     rm -f $HOME/$base
     # copy it first to have the right permissions
-    cp $f $HOME/$base
-    sed -e "s%@HOME@%$HOME%g" < $f > $HOME/$base
+    cp -v $base $HOME/$base
+    sed -e "s%@HOME@%$HOME%g" < $base > $HOME/$base
 done
+
+# ssh specific
+if [ ! -d $HOME/.ssh ]; then
+    mkdir $HOME/.ssh
+    chmod go-w $HOME/.ssh
+fi
+
+cp -v .ssh/config $HOME/.ssh/
 
 # install ends here
