@@ -2,6 +2,8 @@
 
 for f in $HOME/config/.??*; do
     base=`basename $f`
+    echo "installing $f in $HOME/$base"
+    rm -f $HOME/$base
     sed -e "s%@HOME@%$HOME%g" < $f > $HOME/$base
 done
 
