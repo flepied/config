@@ -1,6 +1,6 @@
 # commands common to all logins -*- shell-script -*-
 
-export http_proxy=${http_proxy-http://proxywww:8080/}
+#export http_proxy=${http_proxy-http://proxywww:8080/}
 export MINICOM=${MINICOM-"-c on"}
 export HOSTNAME=${HOSTNAME-"`uname -n`"}
 export PGPPATH=${PGPPATH-${HOME}/.pgpkeys}
@@ -114,12 +114,14 @@ if [ -r "$HOME/.ssh/identity" ]; then
 	SSH_AUTH_SOCK=$sock
 	export SSH_AUTH_SOCK
     else
-	eval `ssh-agent`
+	if [ -n "$PS1" ]; then
+	    eval `ssh-agent`
+	fi
     fi
-    # we have now an agent running
+    # we should have now an agent running
 
     # ask the pass phrase only in interactive session
-    if [ -n "$PS1" ]
+    if [ -n "$PS1" -a -n "$SSH_AUTH_SOCK" ]
     then
 	# test if the agent has already an identity
 	ssh-add -l | fgrep -i 'no identit' > /dev/null 2>&1
