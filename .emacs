@@ -75,7 +75,7 @@
 
 ;;============================================================================
 ;;============================================================================
-(setq project-name "Linux-Mandrake")
+(setq project-name "Mandrake Linux")
 (setq user-full-name "Frederic Lepied")	; emacs can't access names in NIS ???
 (setq dc-auto-insert-directory "~/templates/")
 (eval-after-load "defaultcontent"
@@ -107,6 +107,9 @@
 					  '(compile-command))))
 
 ;;; pour le mail
+
+;; Delete incoming files after handling.
+(setq mail-source-delete-incoming t)
 
 (defun add-from-menu ()
   ""
@@ -175,8 +178,21 @@
   (interactive)
   (add-from "Frederic Lepied <flepied@mandrakesoft.com>"))
 
-(if (string-equal (getenv "HOST") "calimero")
-    (setenv "http_proxy" t t))
+(defun add-from-lepied ()
+  (interactive)
+  (add-from "Frederic Lepied <fred@lepied.com>"))
+
+(defun add-from-both ()
+  (interactive)
+  (add-from "Marie-Pierre Lepied <marie@lepied.com>, Frederic Lepied <fred@lepied.com>"))
+
+(defun add-from-videotron ()
+  (interactive)
+  (add-from "Frederic Lepied <lepied@videotron.ca>"))
+
+(defun add-from-nowhere ()
+  (interactive)
+  (add-from "Frederic Lepied <Frederic.Lepied@nowhere.com>"))
 
 ;;; pour la couleur
 
@@ -312,6 +328,7 @@
 (sit-for 1)
 
 ;; .emacs ends here
+
 (custom-set-variables)
 (custom-set-faces
  '(gnus-group-news-low-empty-face ((((class color) (background light)) (:foreground "Blue"))))
