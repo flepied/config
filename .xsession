@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 source $HOME/.bashrc
 
@@ -17,7 +17,21 @@ if [ -r ~/.xdefaults ]; then
     xrdb -m ~/.xdefaults
 fi
 
-MAILPATH=/var/mail/flepied xbuffy -nobeep
+if [ -r $HOME/.calendar -a -x /usr/bin/ical ]; then
+    ical -iconic&
+fi
 
-exec fvwm2
+if [ -x /usr/X11R6/bin/xbuffy ]; then
+    MAILPATH=/var/mail/flepied xbuffy -nobeep
+fi
+
+if type licq > /dev/null 2>&1; then
+    licq&
+fi
+
+if type xchat > /dev/null 2>&1; then
+    xchat&
+fi
+
+exec icewm
 exec xterm
