@@ -1,7 +1,22 @@
 ;; path setup
 
-(setq load-path (cons (expand-file-name "~/emacs/") load-path))
-(setq load-path (cons (expand-file-name "~/emacs/site-lisp/") load-path))
+(defun add-load-path (dir)
+  (let ((path (expand-file-name dir)))
+    (if (file-directory-p path)
+	(setq load-path (cons path load-path))
+      nil)))
+
+(add-load-path "~/emacs/")
+(add-load-path "~/emacs/site-lisp/")
+
+(if (add-load-path "~/emacs/pcomplete/")
+    (progn
+      (load "pcmpl-auto")
+      (add-hook 'shell-mode-hook 'pcomplete-shell-setup)))
+
+
+(if (add-load-path "~/emacs/eshell/")
+    (require 'eshell-auto))
 
 ;; load configs from ~/emacs/site-lisp/config
 
