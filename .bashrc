@@ -5,9 +5,6 @@ if [ -r $HOME/config/bashrc ]; then
     source $HOME/config/bashrc
 fi
 
-CVS_RSH=sshx
-export CVS_RSH
-
 # interactive session
 if [ -n "$PS1" ]
 then
