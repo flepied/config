@@ -9,7 +9,6 @@ export IRCSERVER=${IRCSERVER-24.6.229.74}
 export PRINTER=${PRINTER-EpsonAcculaser2000}
 #export PRINTER=${PRINTER-printer}
 export SMTPSERVER=${SMTPSERVER-extmailfr}
-export CVS_RSH=${CVS_RSH=ssh}
 export RPM=${RPM=$HOME/RPM}
 export SIMPLE_BACKUP_SUFFIX=${SIMPLE_BACKUP_SUFFIX=.fred}
 
