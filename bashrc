@@ -6,7 +6,8 @@ export HOSTNAME=${HOSTNAME-"`uname -n`"}
 export PGPPATH=${PGPPATH-${HOME}/.pgpkeys}
 export NNTPSERVER=${NNTPSERVER-news}
 export IRCSERVER=${IRCSERVER-24.6.229.74}
-export PRINTER=${PRINTER-EpsonAcculaser2000}
+#export PRINTER=${PRINTER-EpsonAcculaser2000}
+#export PRINTER=${PRINTER-printer@192.168.100.3}
 #export PRINTER=${PRINTER-printer}
 export SMTPSERVER=${SMTPSERVER-extmailfr}
 export RPM=${RPM=$HOME/RPM}
