@@ -10,6 +10,14 @@ export PRINTER=${PRINTER-printer6}
 export SMTPSERVER=${SMTPSERVER-extmailfr}
 export CVS_RSH=${CVS_RSH=ssh}
 export RPM=${RPM=$HOME/RPM}
+export SIMPLE_BACKUP_SUFFIX=${SIMPLE_BACKUP_SUFFIX=.fred}
+
+if type distcc > /dev/null 2>&1; then
+    export DISTCC_HOSTS='ke no bi ka he enne hp6'
+    export RPM_BUILD_NCPUS=${RPM_BUILD_NCPUS=16}
+    export CC=${CC=distcc}
+    export CXX=${CXX='distcc g++'}
+fi
 
 PATH="$HOME/bin:/usr/local/bin:/usr/X11R6/bin:/usr/bin:/bin:/usr/games:."
 LESS=-MM
@@ -77,6 +85,7 @@ function xhh () {
     alias psg='ps aucx | fgrep -v fgrep | fgrep '
     alias psh='ps aucx | head -15'
     alias lsh='ls -lt|head'
+    alias s='cd ..'
 #
 #
     LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:bd=40;33;01:cd=40;33;01:ex=01;32:*.cmd=01;32:*.exe=01;32:*.com=01;32:*.btm=01;32:*.bat=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.jpg=01;35:*.gif=01;35:*.bmp=01;35:*.xbm=01;35:*.xpm=01;35:';
