@@ -58,9 +58,12 @@
 (if (add-load-path "~/emacs/bbdb/lisp/")
     (load "auto-autoloads"))
 
+(setq tramp-default-method "rsync")
 (if (add-load-path "~/emacs/tramp/lisp/")
-    (setq tramp-default-method "rsync")
-    (require 'tramp) )
+    (require 'tramp))
+
+(if (add-load-path "~/emacs/wiki/")
+    (require 'mywiki))
 
 ;;============================================================================
 ;;============================================================================
