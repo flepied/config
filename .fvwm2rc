@@ -162,7 +162,7 @@ DeskTopSize 2x2
 #
 # ModulePath is a colon-separated list, just like regular unix PATH
 ModulePath /usr/X11R6/lib/X11/fvwm2
-PixmapPath /home/lepied/pixmaps/:/usr/X11R6/include/X11/pixmaps/:/usr/local/include/pixmaps/
+PixmapPath /home/lepied/pixmaps/:/usr/X11R6/include/X11/pixmaps/:/usr/share/icons/
 IconPath   /usr/X11R6/include/X11/bitmaps/
 
 ############################################################################
@@ -565,10 +565,10 @@ Key   Tab       a       CM      WindowList
 
 *FvwmButtons -  xload.xpm   Swallow "xload" Exec xload -bg DarkGrey -geometry -1500-1500
 *FvwmButtons -  clock.xpm   Swallow "xclock" Exec xclock -bg DarkGrey -geometry -1500-1500 -padding 0
-*FvwmButtons -  wmifs.xpm   Swallow "wmifs" Exec wmifs
-*FvwmButtons(3x1) - whatever Swallow "FvwmPager" Module FvwmPager 0 2
-#*FvwmButtons(4x1) - whatever SwallowModule Exec "FvwmPager" FvwmPager 0 3
-
+#*FvwmButtons -  wmifs.xpm   Swallow "wmifs" Exec wmifs
+#*FvwmButtons(3x1) - clock.xpm Swallow "FvwmPager" Module FvwmPager 0 2
+#*FvwmButtons(3x1) - SwallowModule Exec "FvwmPager" FvwmPager 0 3
+*FvwmButtons(4x1 Swallow "FvwmPager" "FvwmPager 0 3")
 
 ######################### No Clutter ########################################
 # I only wrote NoClutter as a simple test case, but maybe some big sites like
@@ -591,10 +591,10 @@ Key   Tab       a       CM      WindowList
 *FvwmPagerFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
 *FvwmPagerHilight #cab3ca
 *FvwmPagerGeometry -1-1
-*FvwmPagerLabel 0 User
-*FvwmPagerLabel 1 Root
-*FvwmPagerLabel 2 Misc
-*FvwmPagerLabel 3 Far
+*FvwmPagerLabel 0 Local
+*FvwmPagerLabel 1 Kenobi
+*FvwmPagerLabel 2 Root
+*FvwmPagerLabel 3 Mandrakesoft
 *FvwmPagerSmallFont 5x8
 
 
