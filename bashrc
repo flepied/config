@@ -104,37 +104,8 @@ fi # isatty
 #set -x
 
 # ssh stuff
-if [ -r "$HOME/.ssh/identity" ]; then
-    if [ -z "$SSH_AUTH_SOCK" ]; then
-        sock=`ls -t /tmp/ssh-$USER/*agent* 2>/dev/null | head -1`
-    else
-	sock=$SSH_AUTH_SOCK
-    fi
-    if [ -S "$sock" ] && ssh-add -l > /dev/null 2>&1; then
-	SSH_AUTH_SOCK=$sock
-	export SSH_AUTH_SOCK
-    else
-	if [ -n "$PS1" ]; then
-	    eval `ssh-agent`
-	fi
-    fi
-    # we should have now an agent running
-
-    # ask the pass phrase only in interactive session
-    if [ -n "$PS1" -a -n "$SSH_AUTH_SOCK" ]
-    then
-	# test if the agent has already an identity
-	ssh-add -l | fgrep -i 'no identit' > /dev/null 2>&1
-
-	# if not try to add the default one
-	if [ $? == 0 ]; then
-            if [ -z "$DISPLAY" ]; then
-		ssh-add
-            else
-                ssh-add < /dev/null
-	    fi
-	fi
-    fi
+if [ -x $HOME/config/run-ssh ]; then
+    source $HOME/config/run-ssh
 fi
 
 # bashrc ends here
