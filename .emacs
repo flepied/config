@@ -131,11 +131,12 @@
 (add-hook 'message-setup-hook
 	  (function (lambda()
 		      (add-from-menu)
-		      (add-hook 'message-mode-hook 'mc-install-write-mode))))
+		      (add-hook 'message-mode-hook 'mc-install-write-mode)
+		      )))
 
-(add-hook 'message-send-hook (function
-			      (lambda()
-				(call-interactively (function mc-sign)))))
+;; (add-hook 'message-send-hook (function
+;; 			      (lambda()
+;; 				(call-interactively (function mc-sign)))))
 
 (setq mc-passwd-timeout 3600)
 
@@ -326,6 +327,12 @@
 ;; (autoload 'ldap-mail-search "ldap"
 ;;   "Do an LDAP search for NAME's email address and display in echo area.
 ;; With prefix arg, prompt for the LDAP host to search from." t)
+
+(setq newsticker-url-list
+ '(("slashdot" "http://slashdot.org/index.rss")
+   ))
+
+(server-start)
 
 (message ".emacs completed")
 (sit-for 1)
