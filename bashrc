@@ -6,7 +6,7 @@ export HOSTNAME=${HOSTNAME-"`uname -n`"}
 export PGPPATH=${PGPPATH-${HOME}/.pgpkeys}
 export NNTPSERVER=${NNTPSERVER-news}
 export IRCSERVER=${IRCSERVER-24.6.229.74}
-export PRINTER=${PRINTER-lp}
+export PRINTER=${PRINTER-printer6}
 export SMTPSERVER=${SMTPSERVER-extmailfr}
 export CVS_RSH=${CVS_RSH=ssh}
 
@@ -110,7 +110,7 @@ if [ -r "$HOME/.ssh/identity" ]; then
     else
 	sock=$SSH_AUTH_SOCK
     fi
-    if [ -S "$sock" ]; then
+    if [ -S "$sock" ] && ssh-add -l > /dev/null 2>&1; then
 	SSH_AUTH_SOCK=$sock
 	export SSH_AUTH_SOCK
     else
