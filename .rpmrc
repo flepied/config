@@ -1,0 +1,5 @@
+buildarchtranslate: i386: i586
+buildarchtranslate: i486: i586
+buildarchtranslate: i586: i586
+buildarchtranslate: i686: i586
+optflags: i586 -O3 -fomit-frame-pointer -fno-exceptions -fno-rtti -pipe -s -mpentium -mcpu=pentium -march=pentium -ffast-math -fexpensive-optimizations

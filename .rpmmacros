@@ -1,0 +1,10 @@
+%_target		linux
+%_topdir                /home2/lepied/RPM
+#%_topdir                /tmp/RPM/
+%_signature				pgp
+%_pgp_name              Frederic Lepied
+%distribution           Mandrake
+%vendor                 MandrakeSoft
+%optflags				-O3 -mpentium -march=pentium -pipe -s -fno-exceptions -fomit-frame-pointer
+%packager 				Frederic Lepied <flepied@mandrakesoft.com>
+%_tmppath				/home2/lepied/tmp/rpm/
