@@ -86,6 +86,9 @@ function xhh () {
     alias psh='ps aucx | head -15'
     alias lsh='ls -lt|head'
     alias s='cd ..'
+    alias cds='cd ~/RPM/SPECS'
+    alias cdo='cd ~/RPM/SOURCES'
+    alias cdb='cd ~/RPM/BUILD'
 #
 #
     LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:bd=40;33;01:cd=40;33;01:ex=01;32:*.cmd=01;32:*.exe=01;32:*.com=01;32:*.btm=01;32:*.bat=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.jpg=01;35:*.gif=01;35:*.bmp=01;35:*.xbm=01;35:*.xpm=01;35:';
