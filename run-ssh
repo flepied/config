@@ -2,11 +2,11 @@
 ## Get/Save ssh environement.
 # Chmouel Boudjnah <chmouel@mandrakesoft.com>
 
-SINFO=$HOME/.ssh/info
-
 if [ ! -r "$HOME/.ssh/identity" ]; then
-    exit
+    return
 fi
+
+SINFO=$HOME/.ssh/info.`uname -n`
 
 [[ -f $SINFO ]] && source $SINFO
 
@@ -33,9 +33,8 @@ if [[ -z $SSH_AUTH_SOCK || -z $SSH_AGENT_PID ]];then
 fi
 
 if [[ ! -f $SINFO ]];then
-    eval `ssh-agent`
-    echo SSH_AGENT_PID=$SSH_AGENT_PID > $SINFO
-    echo SSH_AUTH_SOCK=$SSH_AUTH_SOCK >> $SINFO
+    ssh-agent > $SINFO
+    . $SINFO
 fi
 
 export SSH_AGENT_PID SSH_AUTH_SOCK
