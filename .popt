@@ -1,0 +1,4 @@
+rpm alias --A	-ba --clean --rmsource --rmspec
+rpm alias --R	--rebuild --rmspec
+rpm alias --C -bc --short-circuit
+rpm alias --S --short-circuit
