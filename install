@@ -1,5 +1,8 @@
 #!/bin/sh
 
-ln -sf $HOME/config/.??* $HOME
+for f in $HOME/config/.??*; do
+    base=`basename $f`
+    sed -e "s/@HOME@/$HOME/g" < $f > $HOME/$base
+done
 
 # install ends here
