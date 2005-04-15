@@ -3,6 +3,4 @@
 #%_topdir                /tmp/RPM/
 %_signature		gpg
 %_pgp_name              Frederic Lepied
-%distribution           Mandrake Linux
-%vendor                 MandrakeSoft
 %_tmppath		@HOME@/tmp/rpm/
