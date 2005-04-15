@@ -38,7 +38,7 @@
  	   rpm
 	   )
 
-(setq user-mail-address "flepied@mandrakesoft.com"
+(setq user-mail-address "flepied@mandriva.com"
       user-full-name "Frederic Lepied"
       ;message-send-mail-function 'smtpmail-send-it
       ;smtpmail-smtp-server "smtp.wanadoo.fr"
@@ -65,6 +65,8 @@
 (if (add-load-path "~/emacs/wiki/")
     (require 'mywiki))
 
+(setq emacs-wiki-directories '("~/Wiki" "~/Wiki/conectiva" "~/Wiki/perso"))
+
 ;;============================================================================
 ;;============================================================================
 (if (fboundp 'set-language-environment)
@@ -78,7 +80,7 @@
 
 ;;============================================================================
 ;;============================================================================
-(setq project-name "Mandrake Linux")
+(setq project-name "Mandriva Linux")
 (setq user-full-name "Frederic Lepied")	; emacs can't access names in NIS ???
 (setq dc-auto-insert-directory "~/templates/")
 (eval-after-load "defaultcontent"
@@ -181,6 +183,10 @@
 (defun add-from-mandrake ()
   (interactive)
   (add-from "Frederic Lepied <flepied@mandrakesoft.com>"))
+
+(defun add-from-mandriva ()
+  (interactive)
+  (add-from "Frederic Lepied <flepied@mandriva.com>"))
 
 (defun add-from-lepied ()
   (interactive)
