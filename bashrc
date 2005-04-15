@@ -13,14 +13,14 @@ export SMTPSERVER=${SMTPSERVER-extmailfr}
 export RPM=${RPM=$HOME/RPM}
 export SIMPLE_BACKUP_SUFFIX=${SIMPLE_BACKUP_SUFFIX=.fred}
 
-if type distcc > /dev/null 2>&1; then
-    export DISTCC_HOSTS='ke no bi ka he enne hp6'
-    export RPM_BUILD_NCPUS=${RPM_BUILD_NCPUS=16}
-    export CC=${CC=distcc}
-    export CXX=${CXX='distcc g++'}
-fi
+# if type distcc > /dev/null 2>&1; then
+# #    export DISTCC_HOSTS='ke no bi ka he enne hp6'
+#     export RPM_BUILD_NCPUS=${RPM_BUILD_NCPUS=20}
+#     export CC=${CC=distcc}
+#     export CXX=${CXX='distcc g++'}
+# fi
 
-PATH="$HOME/private/bin:$HOME/bin:/usr/local/bin:/usr/X11R6/bin:/usr/bin:/bin:/usr/games:."
+PATH="/usr/lib/icecream/bin:$HOME/private/bin:$HOME/bin:/usr/local/bin:/usr/X11R6/bin:/usr/bin:/bin:/usr/games:."
 LESS=-MM
 
 umask 022
