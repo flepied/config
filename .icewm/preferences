@@ -164,5 +164,6 @@ KeySysWorkspace10TakeWin="Alt+Ctrl+Shift+0"
 KeySysWorkspace10TakeWin="Alt+Ctrl+Shift+0"
 
 # Names of the Workspaces
-WorkspaceNames=" Mail "," Web "," Root "," compil "," test "," admin "," remote "," 8 "," 9 "," 0 "
+WorkspaceNames=" Mail "," Web "," Root "," comp "," test "," adm "," rem "," 8 "," 9 "," 0 "
 
+NetworkStatusDevice="eth1 eth0"
