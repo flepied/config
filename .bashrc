@@ -28,9 +28,6 @@ then
 	# suppress the /export path and set xterm title
 	cd `echo $PWD|sed -e 's%/export%%'`
     fi
-    if [ -r $HOME/.calendar -a -x /usr/bin/ical ]; then
-	ical -list
-    fi
 fi
 
 # .bashrc ends here
