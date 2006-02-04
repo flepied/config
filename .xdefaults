@@ -23,17 +23,17 @@
         :<Key>KP_End: string(0x1b) string("[4~")\n\
         <Key>KP_Enter: string(0x0d)
 
-
+/*
 emacs.Foreground:			Black
 emacs.Background:			DarkGrey
 emacs*Background:			DarkGrey
+*/
 emacs.region.attributeForeground:	White
 emacs.region.attributeBackground:	SteelBlue
 emacs.pointerColor:                     Orchid
 emacs.cursorColor:                      Orchid
 emacs*bitmapIcon: on
-#emacs*font: fixed
-emacs.geometry: 115x60
+emacs.geometry: 90x50
 
 Seyon.modems: /dev/modem
 
