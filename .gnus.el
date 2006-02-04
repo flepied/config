@@ -2,7 +2,7 @@
 ;; Project         : Imagine
 ;; File            : .gnus.el
 ;; Type		   : -*- emacs-lisp -*-
-;; Version         : $Id: .gnus.el,v 1.6 2004-06-17 06:31:05 flepied Exp $
+;; Version         : $Id: .gnus.el,v 1.7 2006-02-04 09:16:38 fred Exp $
 ;; Author          : Frederic Lepied
 ;; Created On      : Fri Aug 30 09:37:54 1996
 ;; Purpose         : 
@@ -14,7 +14,7 @@
 (mc-setversion "gpg")
 
 (defun To (u) (concat "^\\([Cc][Cc]\\|[Tt][Oo]\\|Mailing-List\\|X-[lL]oop\\|X-BeenThere\\|X-List\\):.*[ ,\"<]" u))
-(defun ToMml (u) (To (concat u "@\\(mandrakesoft\\|linux-mandrake\\).com")))
+(defun ToMml (u) (To (concat u "@\\(mandriva\\(linux\\)?\\|mandrakesoft\\|linux-mandrake\\)\\(.com\\|.org\\)")))
 
 (setq gnus-message-archive-method '(nnfolder "archive"
 					     (nnfolder-directory   "~/Mail/archive")
@@ -34,6 +34,7 @@
 			     ("mail.spam" "\\[--SPAM--\\]")
 			     ("mail.mandrake.cvs" "^X-CVS-module:\\|^X-CVSROOT:")
 			     ("mail.cvs-log" "^X-Attribution: cvs-log")
+			     ("mail.lycoris" "nda@lycoris.com")
 			     ("mail.x-packagers" "x-packagers@freedesktop.org")
 			     ("mail.xfree86.config" ,(To "config@xfree86.org"))
 			     ("mail.xfree86.xinput" ,(To "xinput@xfree86.org"))
@@ -47,6 +48,7 @@
 			     ("mail.mandrake.testzilla" ,(ToMml "testzilla"))
 			     ("mail.mandrake.rh-tech" ,(ToMml "rh-tech"))
 			     ("mail.mandrake.changelog" ,(ToMml "changelog"))
+			     ("mail.mandrake.mirrors" ,(ToMml "mirrors"))
 			     ("mail.mandrake.clic-dev-public" ,(ToMml "clic-dev-public"))
 			     ("mail.mandrake.cooker" ,(ToMml "cooker"))
 			     ("mail.mandrake.cooker-server" ,(ToMml "cooker-server"))
@@ -83,10 +85,18 @@
 			     ("mail.mandrake.all-announce" ,(ToMml "all-announce"))
 			     ("mail.mandrake.new-apps" ,(ToMml "new-apps"))
 			     ("mail.mandrake.compil" ,(To "compil@mandrake.org"))
+			     ("mail.mandrake.club" ,(To ".*@mandrakeclub.com"))
+			     ("mail.desktop-architect" ,(To "desktop_architects@lists.osdl.org"))
+			     ("mail.portland" ,(To "portland@lists.freedesktop.org"))
+			     ("mail.inteltech" ,(ToMml "inteltech"))
+			     ("mail.atibeta" ,(To "atilinuxbeta@mlist.ati.com"))
+			     ("mail.lssconf" ,(To "lssconf-discuss@inf.ed.ac.uk"))
+			     ("mail.config-mgmt" ,(To "config-mgmt@sage.org"))
 			     ("mail.youri" ,(To "youri-discuss@lists.zarb.org"))
 			     ("mail.glibc" ,(To "libc-alpha@"))
 			     ("mail.vendor-sec" ,(To "vendor-sec@lst.de"))
 			     ("mail.xvendor" ,(To "xvendor@lists.openwall.com"))
+			     ("mail.lcc" ,(To "staff-lcc@lists.progeny.com"))
 			     ("mail.usb" ,(To "linux-usb"))
 			     ("mail.rpm" ,(To "rpm-list@redhat.com"))
 			     ("mail.curl" ,(To "curl-library@lists.sourceforge.net"))
@@ -112,7 +122,7 @@
 			     ("mail.zeroconf" ,(To "zeroconf@merit.edu"))
 			     ("mail.pleac" ,(To "pleac-discuss@lists.sourceforge.net"))
 			     ("mail.local" "^From: [^.]+$\\|^From: .*\\(dgac\\.fr\\|cena\\.fr\\)")
-			     ("mail.mbox.mandrake" "^\\([Cc][Cc]\\|[Tt][Oo]\\):.*[ ,\"<]flepied@mandrakesoft.com")
+			     ("mail.mbox.mandrake" "^\\([Cc][Cc]\\|[Tt][Oo]\\):.*[ ,\"<]flepied@\\(mandrakesoft\\|mandriva\\).com")
 			     ("mail.lads" ,(To "lads@lepied.com"))
 			     ("mail.canada" ,(To "canada@mandrakesoft.com"))
 			     ("mail.mbox.cvs" ,(To "cvs@mandrakesoft.com"))
@@ -128,7 +138,8 @@
 			     ("mail.mbox" "")
 			     )
       gnus-auto-expirable-newsgroups "mail"
-      nnmail-expiry-wait 21
+;      nnmail-expiry-wait 21
+      nnmail-expiry-wait 'never
 ;      nnmail-crosspost t
       gnus-secondary-select-methods '((nnml ""))
 
@@ -221,7 +232,7 @@
 ;; 					    (string= "nnml:mail.mbox.xfree86" gnus-newsgroup-name))))))
 
 (setq mail-sources
-           '((file :path "/var/mail/flepied")))
+           '((file :path "/var/mail/fred")))
 
 (setq message-dont-reply-to-names ".?lepied@")
 
@@ -243,5 +254,8 @@
 				(local-set-key [(meta return)] (ilam (forward-char) (beginning-of-line) (insert "\n\n\n") (previous-line 2)))
 				(local-set-key [(control ?c) (control ?t)] 'add-from-to)
 				))
+
+;; run gnus as an agent to be able to work offline
+(gnus-agentize)
 
 ;;; end of .gnus.el
