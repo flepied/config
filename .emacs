@@ -65,7 +65,7 @@
 (if (add-load-path "~/emacs/wiki/")
     (require 'mywiki))
 
-(setq emacs-wiki-directories '("~/Wiki" "~/Wiki/conectiva" "~/Wiki/perso"))
+(setq emacs-wiki-directories '("~/Wiki" "~/Wiki/conectiva" "~/Wiki/perso" "~/Wiki/noname"  "~/Wiki/hcl"))
 
 ;;============================================================================
 ;;============================================================================
@@ -87,7 +87,7 @@
   '(setq dc-auto-insert-mode-alist (cons (cons 'makefile-mode "temp.mak")
 					 dc-auto-insert-mode-alist)
 	 dc-auto-insert-mode-alist (cons (cons 'c++-mode "temp.cc")
-					 dc-auto-insert-mode-alist)))
+					 dc-auto-insert-mode-alist) ) )
 
 ;;============================================================================
 ;; pour diff et patch
