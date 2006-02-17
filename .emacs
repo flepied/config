@@ -65,7 +65,12 @@
 (if (add-load-path "~/emacs/wiki/")
     (require 'mywiki))
 
-(setq emacs-wiki-directories '("~/Wiki" "~/Wiki/conectiva" "~/Wiki/perso" "~/Wiki/noname"  "~/Wiki/hcl"))
+(setq emacs-wiki-directories '("~/Wiki" "~/Wiki/conectiva" "~/Wiki/perso" "~/Wiki/noname")
+      emacs-wiki-default-page "GettingThingsDone")
+
+(global-set-key "w" '(lambda() (interactive)
+			 (with-emacs-wiki-project emacs-wiki-default-project
+			   (emacs-wiki-visit-link emacs-wiki-default-page))))
 
 ;;============================================================================
 ;;============================================================================
