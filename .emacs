@@ -185,9 +185,9 @@
   (interactive)
   (add-from "Frederic Lepied <Frederic.Lepied@sugix.frmug.org>"))
 
-(defun add-from-mandrake ()
+(defun add-from-gmail ()
   (interactive)
-  (add-from "Frederic Lepied <flepied@mandrakesoft.com>"))
+  (add-from "Frederic Lepied <flepied@gmail.com>"))
 
 (defun add-from-mandriva ()
   (interactive)
