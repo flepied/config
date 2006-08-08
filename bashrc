@@ -1,29 +1,44 @@
 # commands common to all logins -*- shell-script -*-
 
-#export http_proxy=${http_proxy-http://proxywww:8080/}
-export MINICOM=${MINICOM-"-c on"}
-export HOSTNAME=${HOSTNAME-"`uname -n`"}
-export PGPPATH=${PGPPATH-${HOME}/.pgpkeys}
-export NNTPSERVER=${NNTPSERVER-news}
-export IRCSERVER=${IRCSERVER-24.6.229.74}
-#export PRINTER=${PRINTER-EpsonAcculaser2000}
-#export PRINTER=${PRINTER-printer@192.168.100.3}
-#export PRINTER=${PRINTER-printer}
-export SMTPSERVER=${SMTPSERVER-extmailfr}
-export RPM=${RPM=$HOME/RPM}
-export SIMPLE_BACKUP_SUFFIX=${SIMPLE_BACKUP_SUFFIX=.fred}
+if [ "$SHLVL" = 1 ]; then
+    
+    #export http_proxy=${http_proxy-http://proxywww:8080/}
+    export MINICOM=${MINICOM-"-c on"}
+    export HOSTNAME=${HOSTNAME-"`uname -n`"}
+    export PGPPATH=${PGPPATH-${HOME}/.pgpkeys}
+    export NNTPSERVER=${NNTPSERVER-news}
+    export IRCSERVER=${IRCSERVER-24.6.229.74}
+    #export PRINTER=${PRINTER-EpsonAcculaser2000}
+    #export PRINTER=${PRINTER-printer@192.168.100.3}
+    #export PRINTER=${PRINTER-printer}
+    export SMTPSERVER=${SMTPSERVER-extmailfr}
+    export RPM=${RPM=$HOME/RPM}
+    export SIMPLE_BACKUP_SUFFIX=${SIMPLE_BACKUP_SUFFIX=.fred}
 
-# if type distcc > /dev/null 2>&1; then
-# #    export DISTCC_HOSTS='ke no bi ka he enne hp6'
-#     export RPM_BUILD_NCPUS=${RPM_BUILD_NCPUS=20}
-#     export CC=${CC=distcc}
-#     export CXX=${CXX='distcc g++'}
-# fi
+    # if type distcc > /dev/null 2>&1; then
+    # #    export DISTCC_HOSTS='ke no bi ka he enne hp6'
+    #     export RPM_BUILD_NCPUS=${RPM_BUILD_NCPUS=20}
+    #     export CC=${CC=distcc}
+    #     export CXX=${CXX='distcc g++'}
+    # fi
 
-PATH="/usr/lib/icecream/bin:$HOME/private/bin:$HOME/bin:/usr/local/bin:/usr/X11R6/bin:/usr/bin:/bin:/usr/games:."
-LESS=-MM
+    PATH="$HOME/private/bin:$HOME/bin:/usr/local/bin:/usr/X11R6/bin:/usr/bin:/bin:/usr/games:."
+    LESS=-MM
 
-umask 022
+    umask 022
+
+    # Intel compiler
+    dir=/opt/intel/cce/`ls /opt/intel/cce/|tail -1`
+
+    if [ -r $dir/bin/iccvars.sh ]; then
+	. $dir/bin/iccvars.sh
+    fi
+
+    # Intel Thread profiler
+    if [ -r /opt/intel/itt/tprofile/bin/32e/tprofilevars.sh ]; then
+	. /opt/intel/itt/tprofile/bin/32e/tprofilevars.sh
+    fi
+fi
 
 if [ -n "$PS1" ]
 then
