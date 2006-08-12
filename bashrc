@@ -33,10 +33,21 @@ if [ "$SHLVL" = 1 ]; then
     if [ -r $dir/bin/iccvars.sh ]; then
 	. $dir/bin/iccvars.sh
     fi
-
+    
     # Intel Thread profiler
-    if [ -r /opt/intel/itt/tprofile/bin/32e/tprofilevars.sh ]; then
-	. /opt/intel/itt/tprofile/bin/32e/tprofilevars.sh
+
+    case `uname -m` in
+	i*86) a=32;;
+	x86_64) a=32e;;
+    esac
+    
+    if [ -r /opt/intel/itt/tprofile/bin/$a/tprofilevars.sh ]; then
+	. /opt/intel/itt/tprofile/bin/$a/tprofilevars.sh
+    fi
+
+    # source system proxy vars
+    if [ -r /etc/profile.d/proxy.sh ]; then
+	source /etc/profile.d/proxy.sh
     fi
 fi
 
@@ -131,10 +142,6 @@ function xhh () {
 fi # isatty
 
 #set -x
-
-if [ -r /etc/profile.d/proxy.sh ]; then
-    source /etc/profile.d/proxy.sh
-fi
 
 # ssh stuff
 if [ -x $HOME/config/run-ssh ]; then
