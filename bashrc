@@ -132,6 +132,10 @@ fi # isatty
 
 #set -x
 
+if [ -r /etc/profile.d/proxy.sh ]; then
+    source /etc/profile.d/proxy.sh
+fi
+
 # ssh stuff
 if [ -x $HOME/config/run-ssh ]; then
     source $HOME/config/run-ssh
