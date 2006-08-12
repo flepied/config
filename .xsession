@@ -18,33 +18,9 @@ fi
 if [ -r /etc/netprofile/current ]; then
     . /etc/netprofile/current
 
-    if [ -n "$PROFILE" -a "$PROFILE" = nonet ]; then
-	emacs -f gnus-unplugged&
-    else
-	if [ -f $HOME/.fetchmail.pid ]; then
-	    read pid sec < $HOME/.fetchmail.pid
-	    if [ ! -r /proc/$pid ]; then
-		fetch
-	    fi
-	else
-	    fetch
-	fi
-
-	case "$PROFILE" in
-	    default|home)
-		exec /usr/bin/startkde;;
-	esac
-
-	rxvt&
+    mozilla-firefox&
     
-	emacs -f gnus&
-	mozilla&
-	akregator&
-	if type xchat > /dev/null 2>&1; then
-	    xchat&
-	fi
-	skype&
-    fi
+    exec /usr/bin/startgnome	
 fi
 
 if [ -r $HOME/.calendar -a -x /usr/bin/ical ]; then
