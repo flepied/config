@@ -28,7 +28,7 @@ if [ "$SHLVL" = 1 ]; then
     umask 022
 
     # Intel compiler
-    dir=/opt/intel/cce/`ls /opt/intel/cce/|tail -1`
+    dir=/opt/intel/cce/`ls /opt/intel/cce/ 2>/dev/null |tail -1`
 
     if [ -r $dir/bin/iccvars.sh ]; then
 	. $dir/bin/iccvars.sh
