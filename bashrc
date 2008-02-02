@@ -14,7 +14,8 @@ if [ "$SHLVL" = 1 ]; then
     export SMTPSERVER=${SMTPSERVER-extmailfr}
     export RPM=${RPM=$HOME/RPM}
     export SIMPLE_BACKUP_SUFFIX=${SIMPLE_BACKUP_SUFFIX=.fred}
-
+    export CVS_RSH=ssh
+    
     # if type distcc > /dev/null 2>&1; then
     # #    export DISTCC_HOSTS='ke no bi ka he enne hp6'
     #     export RPM_BUILD_NCPUS=${RPM_BUILD_NCPUS=20}
@@ -33,9 +34,16 @@ if [ "$SHLVL" = 1 ]; then
     if [ -r $dir/bin/iccvars.sh ]; then
 	. $dir/bin/iccvars.sh
     fi
+
+    # Intel IPP
+    dir=/opt/intel/ipp/`ls /opt/intel/ipp/ 2> /dev/null|tail -1`
+    
+    if [ -r $dir/em64t/tools/env/ippvarsem64t.sh ]; then
+	#echo "Sourcing IPP vars with $dir/em64t/tools/env/ippvarsem64t.sh"
+	. $dir/em64t/tools/env/ippvarsem64t.sh
+    fi
     
     # Intel Thread profiler
-
     case `uname -m` in
 	i*86) a=32;;
 	x86_64) a=32e;;
@@ -116,13 +124,14 @@ function xhh () {
     alias cds='cd ~/RPM/SPECS'
     alias cdo='cd ~/RPM/SOURCES'
     alias cdb='cd ~/RPM/BUILD'
+    alias cdw='cd ~/work'
 #
 #
     LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:bd=40;33;01:cd=40;33;01:ex=01;32:*.cmd=01;32:*.exe=01;32:*.com=01;32:*.btm=01;32:*.bat=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.jpg=01;35:*.gif=01;35:*.bmp=01;35:*.xbm=01;35:*.xpm=01;35:';
     export LS_COLORS;
     LS_OPTIONS='--color=tty';
     export LS_OPTIONS;
-    PAGER=${PAGER-less}
+    #PAGER=${PAGER-less}
     export PAGER
     alias ls='ls $LS_OPTIONS';
     alias dir='ls $LS_OPTIONS --format=vertical';
