@@ -38,7 +38,7 @@
  	   rpm
 	   )
 
-(setq user-mail-address "flepied@mandriva.com"
+(setq user-mail-address "flepied@gmail.com"
       user-full-name "Frederic Lepied"
       ;message-send-mail-function 'smtpmail-send-it
       ;smtpmail-smtp-server "smtp.wanadoo.fr"
