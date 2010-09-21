@@ -125,7 +125,10 @@ function xhh () {
     alias cdo='cd ~/RPM/SOURCES'
     alias cdb='cd ~/RPM/BUILD'
     alias cdw='cd ~/work'
+    alias e='emacsclient -n'
 #
+    alias d="cd ../../Deriv/\`basename \$PWD\`"
+    alias o="cd ../../Orig/\`basename \$PWD\`"
 #
     LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:bd=40;33;01:cd=40;33;01:ex=01;32:*.cmd=01;32:*.exe=01;32:*.com=01;32:*.btm=01;32:*.bat=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.jpg=01;35:*.gif=01;35:*.bmp=01;35:*.xbm=01;35:*.xpm=01;35:';
     export LS_COLORS;
@@ -136,7 +139,7 @@ function xhh () {
     alias ls='ls $LS_OPTIONS';
     alias dir='ls $LS_OPTIONS --format=vertical';
     alias vdir='ls $LS_OPTIONS --format=long';
-    alias d=dir;
+    #alias d=dir;
     alias v=vdir;
     # alias net='term < /dev/modem > /dev/modem 2> /dev/null&'
     # alias startx='startx >& /dev/null'
