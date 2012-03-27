@@ -23,7 +23,17 @@ if [ "$SHLVL" = 1 ]; then
     #     export CXX=${CXX='distcc g++'}
     # fi
 
-    PATH="$HOME/private/bin:$HOME/bin:/usr/local/bin:/usr/X11R6/bin:/usr/bin:/bin:/usr/games:."
+    PATH=
+    for d in $HOME/private/bin $HOME/bin  $HOME/pkg/android-sdk-linux_x86 /usr/local/bin /usr/X11R6/bin /usr/bin /bin /usr/games .; do
+	if [ -d $d ]; then
+	    if [ -z "$PATH" ]; then
+		PATH=$d
+	    else	
+		PATH=$PATH:$d
+	    fi
+	fi
+    done
+    
     LESS=-MM
 
     umask 022
