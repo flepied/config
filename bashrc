@@ -135,6 +135,5 @@ fi
 if [ -x $HOME/config/run-ssh ]; then
     . $HOME/config/run-ssh
 fi
-fi
 
 # bashrc ends here
