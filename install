@@ -16,6 +16,7 @@ if [ ! -d $HOME/.ssh ]; then
 fi
 
 cp -v .ssh/config $HOME/.ssh/
+chmod go-w $HOME/.ssh/config
 
 # icewm specific
 if [ ! -d $HOME/.icewm ]; then
@@ -23,5 +24,12 @@ if [ ! -d $HOME/.icewm ]; then
 fi
 
 cp -v .icewm/preferences $HOME/.icewm/
+
+# liquidprompt specific
+if [ ! -d $HOME/.config ]; then
+    mkdir $HOME/.config
+fi
+
+cp -v .config/liquidpromptrc $HOME/.config/
 
 # install ends here
