@@ -1,4 +1,4 @@
-my_hdr From: Frederic Lepied <flepied@mandrakesoft.com>
+my_hdr From: Frederic Lepied <fred@lepied.com>
 set sort=threads
 # colors
 color hdrdefault cyan default
@@ -27,7 +27,7 @@ set pgp_autosign=yes
 # This version uses gpg-2comp from 
 #   http://muppet.faveve.uni-stuttgart.de/~gero/gpg-2comp.tar.gz
 #
-# $Id: .muttrc,v 1.1 2001-10-23 15:01:37 flepied Exp $
+# $Id: .muttrc,v 1.1 2001/10/23 15:01:37 flepied Exp $
 #
 # %p    The empty string when no passphrase is needed,
 #       the string "PGPPASSFD=0" if one is needed.
@@ -91,3 +91,11 @@ set pgp_list_secring_command="gpg --no-verbose --batch --with-colons --list-secr
 # receive key from keyserver:
 #set pgp_getkeys_command="wrap.sh -g %r"
 set pgp_getkeys_command=""
+
+set mbox_type=Maildir
+set folder="~/Maildir"
+set mask="!^\\.[^.]"
+set mbox="~/Maildir"
+set record="+.Sent"
+set postponed="+.Drafts"
+set spoolfile="~/Maildir"

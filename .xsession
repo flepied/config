@@ -1,9 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 
 # BROWSER=mymozilla
 # export BROWSER
 
 source $HOME/.bashrc
+
+set -x
 
 function fetch() {
     rm -f ~/.fetchmail.log
@@ -31,7 +33,8 @@ fi
 #     licq&
 # fi
 
-rox --pinboard=MonPunaiseur
+#rox --pinboard=MonPunaiseur
+nautilus -n &
 
 exec /usr/X11R6/bin/starticewm
 exec icewm

@@ -55,46 +55,45 @@ if [ "$SHLVL" = 1 ]; then
 
     # source system proxy vars
     if [ -r /etc/profile.d/proxy.sh ]; then
-	source /etc/profile.d/proxy.sh
+	. /etc/profile.d/proxy.sh
     fi
 fi
 
-if [ -n "$PS1" ]
-then
+if [ -n "$PS1" ]; then
+    
+    if [ "$TERM" = xterm-debian -o "$TERM" = xterm ]; then
 
-if [ "$TERM" = xterm-debian -o "$TERM" = xterm ]; then
-
-function xterm-title() {
-    echo -n ]2\;$*
-}
-
-function xterm-icon-title() {
-    echo -n ]1\;$*
-}
-
-# change window and icon titles in one shot
-function xterm-name() {
-    echo -n ]0\;$*
-}
-
-fi
-
-#xh <host> [command]
-function xh () {
-    host=$1;
-    shift;
-    xcmd=$*;
-    ssh -f ${host:?"(Usage : xh host [command])"} \
-    "env PATH=/usr/bin/X11:$PATH ${xcmd:="xterm -name xterm-$host"}"
-}
-
-#xhh <host> [command]
-function xhh () {
-    host=$1;
-    shift;
-    ssh -f ilana \
-	"/usr/bin/X11/xrsh -debug ${host:?"(Usage : xhh host [command])"} $* "
-}
+# xterm-title() {
+#     echo -n ]2\;$*
+# }
+# 
+# xterm-icon-title() {
+#     echo -n ]1\;$*
+# }
+# 
+# # change window and icon titles in one shot
+# xterm-name() {
+#     echo -n ]0\;$*
+# }
+# 
+# fi
+# 
+# #xh <host> [command]
+# xh () {
+#     host=$1;
+#     shift;
+#     xcmd=$*;
+#     ssh -f ${host:?"(Usage : xh host [command])"} \
+#     "env PATH=/usr/bin/X11:$PATH ${xcmd:="xterm -name xterm-$host"}"
+# }
+# 
+# #xhh <host> [command]
+# xhh () {
+#     host=$1;
+#     shift;
+#     ssh -f ilana \
+# 	"/usr/bin/X11/xrsh -debug ${host:?"(Usage : xhh host [command])"} $* "
+# }
 
 #PS1='`hostname`@`pwd`# '
     PS1='\u@\h:\w\$ '
@@ -151,13 +150,15 @@ function xhh () {
 	    /usr/games/fortune
 	    echo
     fi
-fi # isatty
+# isatty
+fi
 
 #set -x
 
 # ssh stuff
 if [ -x $HOME/config/run-ssh ]; then
-    source $HOME/config/run-ssh
+    . $HOME/config/run-ssh
+fi
 fi
 
 # bashrc ends here

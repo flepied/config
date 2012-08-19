@@ -2,7 +2,7 @@
 
 # execute system wide configuration
 if [ -r $HOME/config/bashrc ]; then
-    source $HOME/config/bashrc
+    . $HOME/config/bashrc
 fi
 
 # interactive session
