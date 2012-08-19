@@ -72,6 +72,10 @@ fi
 if [ -n "$PS1" ]
 then
 
+if [ -r $HOME/external/liquidprompt/liquidprompt ]; then
+    . $HOME/external/liquidprompt/liquidprompt
+fi
+
 if [ "$TERM" = xterm-debian -o "$TERM" = xterm ]; then
 
 function xterm-title() {
