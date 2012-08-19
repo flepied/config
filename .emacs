@@ -6,7 +6,7 @@
 	(setq load-path (cons path load-path))
       nil)))
 
-(add-load-path "~/emacs/")
+;; (add-load-path "~/emacs/")
 (add-load-path "~/emacs/site-lisp/")
 
 ;; load configs from ~/emacs/site-lisp/config
@@ -16,7 +16,9 @@
 ;; don't forget the trailling backslash !!!
 (setq cfg-dirs (list (expand-file-name "~/emacs/site-lisp/config/")))
 
-(load-cfgs base prog
+(load-cfgs
+           base
+	   prog
 	   c-prog
  	   calendar
  	   color
@@ -35,6 +37,7 @@
  	   scheme-prog
  	   template
  	   web
+	   robot
  	   rpm
 	   )
 
@@ -75,7 +78,7 @@
 ;;============================================================================
 ;;============================================================================
 (if (fboundp 'set-language-environment)
-    (set-language-environment "Latin-1"))
+    (set-language-environment "utf-8"))
 ;; for dired
 (setenv "LC_ALL" "C")
 
@@ -350,11 +353,20 @@
 
 ;; .emacs ends here
 
-(custom-set-variables)
+(custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(safe-local-variable-values (quote ((encoding . utf-8)))))
 (custom-set-faces
- '(gnus-group-news-low-empty-face ((((class color) (background light)) (:foreground "Blue"))))
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
  '(gnus-group-mail-3-face ((((class color) (background light)) (:bold t :foreground "Blue"))))
- '(gnus-group-mail-low-face ((((class color) (background light)) (:bold t :foreground "LightBlue"))))
  '(gnus-group-mail-low-empty-face ((((class color) (background light)) (:foreground "DarkBlue"))))
- '(gnus-group-news-3-face ((((class color) (background light)) (:bold t :foreground "darkred")))))
+ '(gnus-group-mail-low-face ((((class color) (background light)) (:bold t :foreground "LightBlue"))))
+ '(gnus-group-news-3-face ((((class color) (background light)) (:bold t :foreground "darkred"))))
+ '(gnus-group-news-low-empty-face ((((class color) (background light)) (:foreground "Blue")))))
 

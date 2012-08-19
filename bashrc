@@ -23,7 +23,17 @@ if [ "$SHLVL" = 1 ]; then
     #     export CXX=${CXX='distcc g++'}
     # fi
 
-    PATH="$HOME/private/bin:$HOME/bin:/usr/local/bin:/usr/X11R6/bin:/usr/bin:/bin:/usr/games:."
+    PATH=
+    for d in $HOME/private/bin $HOME/bin  $HOME/pkg/android-sdk-linux_x86 /usr/local/bin /usr/X11R6/bin /usr/bin /bin /usr/games .; do
+	if [ -d $d ]; then
+	    if [ -z "$PATH" ]; then
+		PATH=$d
+	    else	
+		PATH=$PATH:$d
+	    fi
+	fi
+    done
+    
     LESS=-MM
 
     umask 022
@@ -59,45 +69,11 @@ if [ "$SHLVL" = 1 ]; then
     fi
 fi
 
-if [ -n "$PS1" ]; then
-    
-    if [ "$TERM" = xterm-debian -o "$TERM" = xterm ]; then
-
-# xterm-title() {
-#     echo -n ]2\;$*
-# }
-# 
-# xterm-icon-title() {
-#     echo -n ]1\;$*
-# }
-# 
-# # change window and icon titles in one shot
-# xterm-name() {
-#     echo -n ]0\;$*
-# }
-# 
-# fi
-# 
-# #xh <host> [command]
-# xh () {
-#     host=$1;
-#     shift;
-#     xcmd=$*;
-#     ssh -f ${host:?"(Usage : xh host [command])"} \
-#     "env PATH=/usr/bin/X11:$PATH ${xcmd:="xterm -name xterm-$host"}"
-# }
-# 
-# #xhh <host> [command]
-# xhh () {
-#     host=$1;
-#     shift;
-#     ssh -f ilana \
-# 	"/usr/bin/X11/xrsh -debug ${host:?"(Usage : xhh host [command])"} $* "
-# }
-
-#PS1='`hostname`@`pwd`# '
-    PS1='\u@\h:\w\$ '
-    PS2='> '
+if [ -n "$PS1" ]
+then
+    if [ -r $HOME/external/liquidprompt/liquidprompt ]; then
+       . $HOME/external/liquidprompt/liquidprompt
+    fi
     if [ "$SHELL" = "/bin/pdksh" ]; then
 	PS1="! $ "
     fi
