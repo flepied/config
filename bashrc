@@ -15,6 +15,8 @@ if [ "$SHLVL" = 1 ]; then
     export RPM=${RPM=$HOME/RPM}
     export SIMPLE_BACKUP_SUFFIX=${SIMPLE_BACKUP_SUFFIX=.fred}
     export CVS_RSH=ssh
+    export PIP_DOWNLOAD_CACHE=$HOME/.cache/pip_download_cache
+    mkdir -p $PIP_DOWNLOAD_CACHE
     
     # if type distcc > /dev/null 2>&1; then
     # #    export DISTCC_HOSTS='ke no bi ka he enne hp6'
