@@ -56,3 +56,5 @@
   short = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
   filelog = log -u  # show changes to a file
   changelog = log --pretty=format:\" * %s\"
+[push]
+	default = simple

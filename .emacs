@@ -26,6 +26,7 @@
  	   dired
  	   dpkg
  	   gnus
+           js-prog
  	   lisp-prog
  	   local
  	   mail-news
@@ -33,6 +34,7 @@
  	   net
  	   options
  	   perl-prog
+	   puppet
  	   python
  	   scheme-prog
  	   template
@@ -74,6 +76,33 @@
 (global-set-key "w" '(lambda() (interactive)
 			 (with-emacs-wiki-project emacs-wiki-default-project
 			   (emacs-wiki-visit-link emacs-wiki-default-page))))
+
+(add-load-path "~/emacs/cl-lib/")
+(add-load-path "~/emacs/git-modes/")
+(add-load-path "~/emacs/gitflow/")
+(if (add-load-path "~/emacs/magit/")
+    (load-library "magit-autoloads"))
+
+;; (if (add-load-path "~/emacs/flx/")
+;;     (progn
+;;       (require 'flx-ido)
+;;       (ido-mode 1)
+;;       (ido-everywhere 1)
+;;       (flx-ido-mode 1)
+;;       ;; disable ido faces to see flx highlights.
+;;       (setq ido-use-faces nil)
+;;       (ido-vertical-mode 1)
+;;       )
+;;     )
+
+(add-load-path "~/emacs/s.el/")
+(add-load-path "~/emacs/dash.el/")
+(if (add-load-path "~/emacs/projectile/")
+    (progn
+      (require 'projectile)
+      (projectile-global-mode)
+      )
+    )
 
 ;;============================================================================
 ;;============================================================================
@@ -359,11 +388,13 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(safe-local-variable-values (quote ((encoding . utf-8)))))
+
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+ '(font-lock-string-face ((t (:foreground "DarkGreen"))))
  '(gnus-group-mail-3-face ((((class color) (background light)) (:bold t :foreground "Blue"))))
  '(gnus-group-mail-low-empty-face ((((class color) (background light)) (:foreground "DarkBlue"))))
  '(gnus-group-mail-low-face ((((class color) (background light)) (:bold t :foreground "LightBlue"))))

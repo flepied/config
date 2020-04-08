@@ -1,5 +1,15 @@
 # commands common to all logins -*- shell-script -*-
 
+    ###########
+    # ANDROID #
+    ###########
+    if [ -d ${HOME}/Android/Sdk ]; then
+        export ANDROID_HOME=${HOME}/Android/Sdk
+        export PATH=${PATH}:${ANDROID_HOME}/tools
+        export PATH=${PATH}:${ANDROID_HOME}/tools/bin
+        export PATH=${PATH}:${ANDROID_HOME}/platform-tools
+    fi
+
 if [ "$SHLVL" = 1 ]; then
     
     #export http_proxy=${http_proxy-http://proxywww:8080/}
@@ -18,6 +28,16 @@ if [ "$SHLVL" = 1 ]; then
     export PIP_DOWNLOAD_CACHE=$HOME/.cache/pip_download_cache
     mkdir -p $PIP_DOWNLOAD_CACHE
     
+    ###########
+    # ANDROID #
+    ###########
+    if [ -d ${HOME}/Android/Sdk ]; then
+        export ANDROID_HOME=${HOME}/Android/Sdk
+        export PATH=${PATH}:${ANDROID_HOME}/tools
+        export PATH=${PATH}:${ANDROID_HOME}/tools/bin
+        export PATH=${PATH}:${ANDROID_HOME}/platform-tools
+    fi
+    
     # if type distcc > /dev/null 2>&1; then
     # #    export DISTCC_HOSTS='ke no bi ka he enne hp6'
     #     export RPM_BUILD_NCPUS=${RPM_BUILD_NCPUS=20}
@@ -26,7 +46,7 @@ if [ "$SHLVL" = 1 ]; then
     # fi
 
     PATH=
-    for d in $HOME/private/bin $HOME/bin  $HOME/pkg/android-sdk-linux_x86 /usr/local/bin /usr/X11R6/bin /usr/bin /bin /usr/games .; do
+    for d in $HOME/private/bin $HOME/bin  $HOME/pkg/android-sdk-linux_x86 /usr/local/sbin /usr/local/bin /usr/X11R6/bin /usr/sbin /usr/bin /sbin /bin /usr/games /usr/local/games .; do
 	if [ -d $d ]; then
 	    if [ -z "$PATH" ]; then
 		PATH=$d
@@ -76,6 +96,9 @@ then
     if [ -r $HOME/external/liquidprompt/liquidprompt ]; then
        . $HOME/external/liquidprompt/liquidprompt
     fi
+    if [ -r $HOME/config/git-completion.bash ]; then
+        . $HOME/config/git-completion.bash
+    fi
     if [ "$SHELL" = "/bin/pdksh" ]; then
 	PS1="! $ "
     fi
@@ -103,6 +126,8 @@ then
     alias cdb='cd ~/RPM/BUILD'
     alias cdw='cd ~/work'
     alias e='emacsclient -n'
+    alias gti=git
+    alias sshn='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 #
     alias d="cd ../../Deriv/\`basename \$PWD\`"
     alias o="cd ../../Orig/\`basename \$PWD\`"
@@ -120,6 +145,7 @@ then
     alias v=vdir;
     # alias net='term < /dev/modem > /dev/modem 2> /dev/null&'
     # alias startx='startx >& /dev/null'
+    alias wz='cd ~/work/wazo-platform'
     ignoreeof=10
     export PS1 PS2 ignoreeof
     if [ -x /usr/games/fortune ]
