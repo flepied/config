@@ -1,14 +1,14 @@
 [user]
   name = Frederic Lepied
-  email = frederic.lepied@enovance.com
+	email = flepied@wazo.io
 [log]
   decorate = full			
-[color]
-  diff = auto
-  status = auto
-  branch = auto
-  interactive = auto
-  ui = auto
+#[color]
+#  diff = auto
+#  status = auto
+#  branch = auto
+#  interactive = auto
+#  ui = auto
 [gc]
   auto = 1
 [merge]
@@ -17,7 +17,7 @@
   # The basics.
   ci = commit
   co = checkout
-
+  pu = push
   d = diff                                # show changes in the working directory (not including index)
   ds = diff --staged                      # show changes in the index only (not working directory)
 
@@ -56,5 +56,25 @@
   short = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
   filelog = log -u  # show changes to a file
   changelog = log --pretty=format:\" * %s\"
+
+  change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ \\\"$`echo $VAR`\\\" = '$OLD' ]]; then export $VAR='$NEW'; fi\" $@; }; f "
+
 [push]
 	default = simple
+[gitreview]
+	username = fredericlepied
+[receive]
+	denyCurrentBranch = warn
+[http]
+	sslVerify = false
+[credential "https://github.com"]
+	helper = store
+	username = fredericlepied
+[color]
+	ui = false
+[diff]
+	noprefix = true
+[fetch]
+	prune = true
+[rebase]
+        autosquash = true

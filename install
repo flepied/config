@@ -25,11 +25,12 @@ fi
 
 cp -v .icewm/preferences $HOME/.icewm/
 
-# liquidprompt specific
-if [ ! -d $HOME/.config ]; then
-    mkdir $HOME/.config
+# liquidprompt and git specific
+if [ ! -d $HOME/.config/git ]; then
+    mkdir -p $HOME/.config/git
 fi
 
 cp -v .config/liquidpromptrc $HOME/.config/
+cp -v .config/git/ignore $HOME/.config/git/
 
 # install ends here
