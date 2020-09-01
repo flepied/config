@@ -43,7 +43,7 @@
  	   rpm
 	   )
 
-(setq user-mail-address "frederic.lepied@enovance.com"
+(setq user-mail-address "flepied@redhat.com"
       user-full-name "Frederic Lepied"
       ;message-send-mail-function 'smtpmail-send-it
       ;smtpmail-smtp-server "smtp.wanadoo.fr"
@@ -383,17 +383,23 @@
 ;; .emacs ends here
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(safe-local-variable-values (quote ((encoding . utf-8)))))
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(js-indent-level 2)
+ '(package-selected-packages
+   '(forge github-review go-mode ini-mode markdown-mode+ docker-tramp git-auto-commit-mode po-mode yaml-mode jsx-mode rjsx-mode json-mode js2-mode markdown-mode solidity-mode git-commit-mode magit rust-mode pymacs multiple-cursors ido-vertical-mode google-translate cl-lib adoc-mode))
+ '(safe-local-variable-values
+   '((test-case-name . twisted\.web\.test\.test_web)
+     (py-indent-offset . 4)
+     (encoding . utf-8))))
 
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(font-lock-string-face ((t (:foreground "DarkGreen"))))
  '(gnus-group-mail-3-face ((((class color) (background light)) (:bold t :foreground "Blue"))))
  '(gnus-group-mail-low-empty-face ((((class color) (background light)) (:foreground "DarkBlue"))))
@@ -401,3 +407,5 @@
  '(gnus-group-news-3-face ((((class color) (background light)) (:bold t :foreground "darkred"))))
  '(gnus-group-news-low-empty-face ((((class color) (background light)) (:foreground "Blue")))))
 
+(put 'scroll-left 'disabled nil)
+(put 'upcase-region 'disabled nil)

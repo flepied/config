@@ -1,8 +1,8 @@
 [user]
   name = Frederic Lepied
-	email = flepied@wazo.io
+	email = flepied@redhat.com
 [log]
-  decorate = full			
+  decorate = full
 #[color]
 #  diff = auto
 #  status = auto
@@ -20,7 +20,9 @@
   pu = push
   d = diff                                # show changes in the working directory (not including index)
   ds = diff --staged                      # show changes in the index only (not working directory)
-
+  ma = checkout master
+  puf = push -f
+  shows = show --stat
   unstage = reset HEAD                    # un-add files from index (tracking)
   uncommit = reset --soft HEAD^           # go back one commit, put changes into your working dir and index
   chunkyadd = add --patch                 # stage commits chunk by chunk
