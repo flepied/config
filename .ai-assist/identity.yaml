@@ -1,0 +1,39 @@
+version: '1.0'
+user:
+  name: "Frederic Lepied"
+  role: Senior Manager
+  organization: Red Hat Telco Partner CI Team
+  timezone: Europe/Paris
+  context: |
+    I manage 2 teams of Integration engineers working with Telco Partners.
+
+    Telco Partner CI team (Jira project is CILAB) main GitHub org are dci-labs and distributedci.
+
+    - Rajesh Chiluveru (Ireland) [rchiluve@redhat.com,rh-ee-rchiluve,rajchiluveru]
+    - Ramon Perez (Spain) [raperez@redhat.com,raperez@redhat.com,ramperher]
+    - Pierre Blanc (Montreal, Canada) [pblanc@redhat.com,pblanc@redhat.com,pierreblanc]
+    - Olivier Petit (France) [opetit@redhat.com,rhn-support-opetit,olpetit]
+    - Tatiana Krishtop (France) [tkrishto@redhat.com] Parental leave
+    - Tony Garcia (US TX) [togarcia@redhat.com,togarcia@redhat.com,tonyskapunk]
+    - Jose Alberto Rodriguez aka Beto (Mexico) [josearod@redhat.com,josearod@redhat.com,betoredhat]
+    - Manuel Rodriguez Hernandez (CA QC) [manrodri@redhat.com] Relative Care leave
+    - Nacho Silla (Spain) [nsilla@redhat.com,nsilla@redhat.com,nsilla]
+
+    Ericsson SLCM team (Jira project is CNF with the label Ericsson-Cloud-RAN-SLCM) main GitHub org is rh-telco-labs
+
+    - Jukka Miettinen (US MA) [jmiettin@redhat.com,jmiettin@redhat.com,]
+    - Semih Kisa (Barcelona, Spain) [skisa@redhat.com,rh-ee-skisa,semihkisa]
+    - Periyamaruthu Mohanraj aka Peri (Germany) [pmohanra@redhat.com,rh-ee-pmohanra,mpmaruthu]
+    - Jennifer Chen (US MA) [jenchen@redhat.com,jenchen@redhat.com,Jennifer-chen-rh]
+    - Shreemanth Patil aka Shree (US MA) [shreepat@redhat.com,shreepat@redhat.com,ShreePatilMA]
+
+    For each person, the info is [<email>,<jira>,<github>]. Mine is [flepied@redhat.com,rhn-engineering-flepied,fredericlepied]
+                
+assistant:
+  nickname: Nexus
+  personality: |
+    You are an assistant, expert in people management, CI and devops.
+preferences:
+  formality: professional
+  verbosity: concise
+  emoji_usage: moderate

@@ -2,6 +2,12 @@
 
 cd $HOME/config
 
+# AI Assist
+mkdir -p $HOME/.ai-assist $HOME/.iris
+
+rsync -auv .ai-assist/ $HOME/.ai-assist/
+rsync -auv .iris/ $HOME/.iris/
+
 for base in `find . -name '.??*' -type f |grep  -v '.#\|~$' | sed 's@^./@@g'`; do
     rm -f $HOME/$base
     # copy it first to have the right permissions
@@ -17,13 +23,6 @@ fi
 
 cp -v .ssh/config $HOME/.ssh/
 chmod go-w $HOME/.ssh/config
-
-# icewm specific
-if [ ! -d $HOME/.icewm ]; then
-    mkdir $HOME/.icewm
-fi
-
-cp -v .icewm/preferences $HOME/.icewm/
 
 # liquidprompt and git specific
 if [ ! -d $HOME/.config/git ]; then

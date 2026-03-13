@@ -20,27 +20,32 @@
            base
 	   prog
 	   c-prog
- 	   calendar
+; 	   calendar
  	   color
  	   compil
- 	   dired
- 	   dpkg
- 	   gnus
+; 	   dired
+; 	   dpkg
+; 	   gnus
+           awl
+           golang
+           haskell
            js-prog
  	   lisp-prog
- 	   local
- 	   mail-news
- 	   mouse
- 	   net
- 	   options
- 	   perl-prog
-	   puppet
+; 	   local
+; 	   mail-news
+; 	   mouse
+; 	   net
+; 	   options
+; 	   perl-prog
+;	   puppet
  	   python
  	   scheme-prog
  	   template
- 	   web
-	   robot
+; 	   web
+;	   robot
  	   rpm
+           yaml
+           copilot
 	   )
 
 (setq user-mail-address "flepied@redhat.com"
@@ -77,11 +82,12 @@
 			 (with-emacs-wiki-project emacs-wiki-default-project
 			   (emacs-wiki-visit-link emacs-wiki-default-page))))
 
-(add-load-path "~/emacs/cl-lib/")
+;(add-load-path "~/emacs/cl-lib/")
 (add-load-path "~/emacs/git-modes/")
 (add-load-path "~/emacs/gitflow/")
 (if (add-load-path "~/emacs/magit/")
     (load-library "magit-autoloads"))
+(add-load-path "~/emacs/copilot.el/")
 
 ;; (if (add-load-path "~/emacs/flx/")
 ;;     (progn
@@ -99,8 +105,11 @@
 (add-load-path "~/emacs/dash.el/")
 (if (add-load-path "~/emacs/projectile/")
     (progn
+                                        ;(ivy-mode)
       (require 'projectile)
-      (projectile-global-mode)
+      (projectile-mode +1)
+      (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+      (setq projectile-project-search-path '( "~/work/" "~/perso/" "~/external/"))
       )
     )
 
@@ -245,7 +254,7 @@
 
 (and window-system
      (make-face 'font-lock-string-face)
-     (set-face-foreground 'font-lock-string-face "Green")
+     (set-face-foreground 'font-lock-string-face "DarkGreen")
      (make-face 'font-lock-reference-face)
      (set-face-foreground 'font-lock-reference-face "DarkBlue")
      (make-face 'font-lock-setter-face)
@@ -389,7 +398,7 @@
  ;; If there is more than one, they won't work right.
  '(js-indent-level 2)
  '(package-selected-packages
-   '(forge github-review go-mode ini-mode markdown-mode+ docker-tramp git-auto-commit-mode po-mode yaml-mode jsx-mode rjsx-mode json-mode js2-mode markdown-mode solidity-mode git-commit-mode magit rust-mode pymacs multiple-cursors ido-vertical-mode google-translate cl-lib adoc-mode))
+   '(flymake-haskell-multi use-package editorconfig dash s zig-mode compat swiper flymake-yamllint yasnippet company ansible docker dockerfile-mode rpm-spec-mode flymake-shellcheck haskell-mode typescript-mode tss typescript forge github-review go-mode ini-mode markdown-mode+ docker-tramp git-auto-commit-mode po-mode yaml-mode jsx-mode rjsx-mode json-mode js2-mode markdown-mode solidity-mode git-commit-mode magit rust-mode pymacs multiple-cursors ido-vertical-mode google-translate cl-lib adoc-mode))
  '(safe-local-variable-values
    '((test-case-name . twisted\.web\.test\.test_web)
      (py-indent-offset . 4)

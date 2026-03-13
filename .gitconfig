@@ -1,5 +1,5 @@
 [user]
-  name = Frederic Lepied
+	name = Frederic Lepied
 	email = flepied@redhat.com
 [log]
   decorate = full
@@ -20,14 +20,12 @@
   pu = push
   d = diff                                # show changes in the working directory (not including index)
   ds = diff --staged                      # show changes in the index only (not working directory)
-  ma = checkout master
   puf = push -f
   shows = show --stat
   unstage = reset HEAD                    # un-add files from index (tracking)
   uncommit = reset --soft HEAD^           # go back one commit, put changes into your working dir and index
   chunkyadd = add --patch                 # stage commits chunk by chunk
-  amend = commit --amend                  # fix last commit
-  ammend = commit --amend                 # for those who can't spell :-)
+  amend = commit --amend --no-edit        # fix last commit
 
   # 'git add -u' handles deleted files, but not new files
   # 'git add .' handles any current and new files, but not deleted
@@ -59,8 +57,14 @@
   filelog = log -u  # show changes to a file
   changelog = log --pretty=format:\" * %s\"
 
+  l = log -1
+
   change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ \\\"$`echo $VAR`\\\" = '$OLD' ]]; then export $VAR='$NEW'; fi\" $@; }; f "
 
+  rsync = !sh -c '[ ! -z $0 ] && rsync -Cavz --delete $(git rev-parse --show-toplevel)/ $0/ || echo \"Usage: git rsync <rsync target>\"'
+
+  dft = difftool
+  
 [push]
 	default = simple
 [gitreview]
@@ -80,3 +84,18 @@
 	prune = true
 [rebase]
         autosquash = true
+[init]
+	templateDir = /home/fred/.git-template
+	defaultBranch = main
+[diff]
+        tool = difftastic
+
+[difftool]
+        prompt = false
+
+[difftool "difftastic"]
+        cmd = difft "$LOCAL" "$REMOTE"
+
+# Use a pager for large output, just like other git commands.
+[pager]
+        difftool = true

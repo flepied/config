@@ -25,11 +25,13 @@ ssh-add -l > /dev/null 2>&1
 
 if [ $? != 0 ];then
     [ -n "$PS1" ] && echo "No agent, removing $SINFO"
-    rm -f $SINFO
+    if [ -r $SINFO ];then
+        rm -f $SINFO
+    fi
 fi
 
 if [ ! -f $SINFO ];then
-    ssh-agent | fgrep -v echo > $SINFO
+    ssh-agent | grep -Fv echo > $SINFO
     . $SINFO
 fi
 
@@ -39,7 +41,7 @@ export SSH_AGENT_PID SSH_AUTH_SOCK
 if [ -n "$PS1" -a -n "$SSH_AUTH_SOCK" ]
 then
     # test if the agent has already an identity
-    ssh-add -l | fgrep -i 'no identit' > /dev/null 2>&1
+    ssh-add -l | grep -Fi 'no identit' > /dev/null 2>&1
 
     # if not try to add the default one
     if [ $? == 0 ]; then

@@ -1,17 +1,26 @@
 # commands common to all logins -*- shell-script -*-
 
-    ###########
-    # ANDROID #
-    ###########
-    if [ -d ${HOME}/Android/Sdk ]; then
-        export ANDROID_HOME=${HOME}/Android/Sdk
-        export PATH=${PATH}:${ANDROID_HOME}/tools
-        export PATH=${PATH}:${ANDROID_HOME}/tools/bin
-        export PATH=${PATH}:${ANDROID_HOME}/platform-tools
-    fi
+
+export GOPATH=~/gopath/
+export GOBIN="${GOPATH}bin/"
+
+# DCI specific
+if [ -r "$HOME/work/dci-ansible/dev-ansible.cfg" ]; then
+    export ANSIBLE_CONFIG="$HOME/work/dci-ansible/dev-ansible.cfg"
+fi
 
 if [ "$SHLVL" = 1 ]; then
-    
+
+    if type -p claude >& /dev/null; then
+        export CLAUDE_CODE_USE_VERTEX=1
+        export CLOUD_ML_REGION=us-east5
+        export ANTHROPIC_VERTEX_PROJECT_ID=itpc-gcp-eco-eng-claude
+    fi
+
+    if type gemini >& /dev/null; then
+        export GOOGLE_CLOUD_PROJECT=dci-mcp-server-471716
+    fi
+
     #export http_proxy=${http_proxy-http://proxywww:8080/}
     export MINICOM=${MINICOM-"-c on"}
     export HOSTNAME=${HOSTNAME-"`uname -n`"}
@@ -25,28 +34,12 @@ if [ "$SHLVL" = 1 ]; then
     export RPM=${RPM=$HOME/RPM}
     export SIMPLE_BACKUP_SUFFIX=${SIMPLE_BACKUP_SUFFIX=.fred}
     export CVS_RSH=ssh
-    export PIP_DOWNLOAD_CACHE=$HOME/.cache/pip_download_cache
-    mkdir -p $PIP_DOWNLOAD_CACHE
+    #export PIP_DOWNLOAD_CACHE=$HOME/.cache/pip_download_cache
+    #mkdir -p $PIP_DOWNLOAD_CACHE
     
-    ###########
-    # ANDROID #
-    ###########
-    if [ -d ${HOME}/Android/Sdk ]; then
-        export ANDROID_HOME=${HOME}/Android/Sdk
-        export PATH=${PATH}:${ANDROID_HOME}/tools
-        export PATH=${PATH}:${ANDROID_HOME}/tools/bin
-        export PATH=${PATH}:${ANDROID_HOME}/platform-tools
-    fi
-    
-    # if type distcc > /dev/null 2>&1; then
-    # #    export DISTCC_HOSTS='ke no bi ka he enne hp6'
-    #     export RPM_BUILD_NCPUS=${RPM_BUILD_NCPUS=20}
-    #     export CC=${CC=distcc}
-    #     export CXX=${CXX='distcc g++'}
-    # fi
 
     PATH=
-    for d in $HOME/private/bin $HOME/bin  $HOME/pkg/android-sdk-linux_x86 /usr/local/sbin /usr/local/bin /usr/X11R6/bin /usr/sbin /usr/bin /sbin /bin /usr/games /usr/local/games .; do
+    for d in $HOME/.radicle/bin $HOME/pkg/zig-linux-x86_64-0.11.0-dev.1905+e3cf9d165 $HOME/private/bin $HOME/bin $HOME/.local/bin $HOME/.cargo/bin $HOME/pkg/balena-cli $GOBIN /usr/local/sbin /usr/local/bin /usr/X11R6/bin /usr/sbin /usr/bin /sbin /bin /usr/games /usr/local/games .; do
 	if [ -d $d ]; then
 	    if [ -z "$PATH" ]; then
 		PATH=$d
@@ -55,7 +48,21 @@ if [ "$SHLVL" = 1 ]; then
 	    fi
 	fi
     done
-    
+
+    # setup bash completion direrctory unde ~/.local/share/bash-completion/
+    if [ -d $HOME/.local/share/bash-completion/ ]; then
+        export BASH_COMPLETION_DIR=$HOME/.local/share/bash-completion
+
+        for comp in $(ls $HOME/.local/share/bash-completion/*); do
+            source $comp
+        done
+    fi
+
+
+#     if type -p difft >& /dev/null; then
+#         export GIT_EXTERNAL_DIFF=difft
+#     fi
+
     LESS=-MM
 
     umask 022
@@ -102,12 +109,24 @@ then
     if [ "$SHELL" = "/bin/pdksh" ]; then
 	PS1="! $ "
     fi
+    if [ -d ~/work/dci-openshift-agent ]; then
+        alias doa='cd ~/work/dci-openshift-agent/'
+    fi
+    if [ -d ~/work/dci-openshift-app-agent ]; then
+        alias doaa='cd ~/work/dci-openshift-app-agent/'
+    fi
+    if [ -d ~/work/ai-assist ]; then
+        alias nexus='~/work/ai-assist/.venv/bin/ai-assist'
+        alias iris='AI_ASSIST_REPORTS_DIR=~/iris AI_ASSIST_CONFIG_DIR=~/.iris ~/work/ai-assist/.venv/bin/ai-assist'
+    fi    
     alias j='jobs'
     alias lc='ls -F'
     alias la='ls -a'
     alias ll='ls -la'
     alias m=more
     alias l=less
+    alias a='source .venv/bin/activate'
+    alias d=deactivate
     alias +=pushd
     alias -- -=popd
 #    alias \==dirs
@@ -117,7 +136,7 @@ then
     alias lc='ls -CF'
     alias ll='ls -lg'
     alias lla='ls -la'
-    alias psg='ps aucx | fgrep -v fgrep | fgrep '
+    alias psg='ps aucx | grep -Fv fgrep | grep -F '
     alias psh='ps aucx | head -15'
     alias lsh='ls -lt|head'
     alias s='cd ..'
@@ -125,12 +144,17 @@ then
     alias cdo='cd ~/RPM/SOURCES'
     alias cdb='cd ~/RPM/BUILD'
     alias cdw='cd ~/work'
+    alias cdp='cd ~/perso'
+    alias cde='cd ~/external'
+    alias cdt='cd ~/Téléchargements'
+    alias cdd='cd ~/work/dallas-telco-lab'
+    alias cdc='cd ~/work/ansible_collections/redhatci/ocp'
     alias e='emacsclient -n'
     alias gti=git
     alias sshn='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 #
-    alias d="cd ../../Deriv/\`basename \$PWD\`"
-    alias o="cd ../../Orig/\`basename \$PWD\`"
+#     alias d="cd ../../Deriv/\`basename \$PWD\`"
+#     alias o="cd ../../Orig/\`basename \$PWD\`"
 #
     LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:bd=40;33;01:cd=40;33;01:ex=01;32:*.cmd=01;32:*.exe=01;32:*.com=01;32:*.btm=01;32:*.bat=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.jpg=01;35:*.gif=01;35:*.bmp=01;35:*.xbm=01;35:*.xpm=01;35:';
     export LS_COLORS;
