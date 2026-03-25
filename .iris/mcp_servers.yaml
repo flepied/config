@@ -1,0 +1,5 @@
+servers:
+  second-brain:
+    command: "/home/fred/perso/second-brain-agent/mcp-server.sh"
+    env:
+      MCP_SHOW_BANNER: "false"

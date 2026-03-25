@@ -118,7 +118,9 @@ then
     if [ -d ~/work/ai-assist ]; then
         alias nexus='~/work/ai-assist/.venv/bin/ai-assist'
         alias iris='AI_ASSIST_REPORTS_DIR=~/iris AI_ASSIST_CONFIG_DIR=~/.iris ~/work/ai-assist/.venv/bin/ai-assist'
-    fi    
+        # Agent Under Test 2 (ai-assist-branch2)
+        alias aut2='AI_ASSIST_REPORTS_DIR=~/aut2 AI_ASSIST_CONFIG_DIR=~/.aut2 ~/work/ai-assist-branch2/.venv/bin/ai-assist'
+    fi
     alias j='jobs'
     alias lc='ls -F'
     alias la='ls -a'

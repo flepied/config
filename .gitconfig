@@ -99,3 +99,5 @@
 # Use a pager for large output, just like other git commands.
 [pager]
         difftool = true
+[commit]
+	gpgsign = true
