@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+usage() {
+  cat <<'EOF' >&2
+Usage: git-pushu [remote|remote/branch]
+
+Push the current branch and set its upstream.
+
+- With no argument, reuse the current branch's configured upstream.
+- With no argument and no configured upstream, use the default remote.
+- With a remote like "origin", push to that remote using the current branch name.
+- With "remote/branch", push to that exact upstream branch.
+EOF
+  exit 1
+}
+
+if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
+  usage
+fi
+
+if [[ $# -gt 1 ]]; then
+  usage
+fi
+
+branch=$(git symbolic-ref --quiet --short HEAD) || {
+  echo "git-pushu: not on a branch" >&2
+  exit 1
+}
+
+if [[ $# -eq 1 ]]; then
+  target=$1
+  if [[ "$target" == */* ]]; then
+    remote=${target%%/*}
+    upstream_branch=${target#*/}
+  else
+    remote=$target
+    upstream_branch=$branch
+  fi
+else
+  upstream=$(git rev-parse --abbrev-ref --symbolic-full-name '@{upstream}' 2>/dev/null) || {
+    remote=$(git config --get "branch.$branch.pushRemote" 2>/dev/null || true)
+    if [[ -z "$remote" ]]; then
+      remote=$(git config --get remote.pushDefault 2>/dev/null || true)
+    fi
+    if [[ -z "$remote" ]]; then
+      remote=origin
+    fi
+    upstream_branch=$branch
+  }
+  if [[ -n "${upstream:-}" ]]; then
+    remote=${upstream%%/*}
+    upstream_branch=${upstream#*/}
+  fi
+fi
+
+git push --set-upstream "$remote" "HEAD:$upstream_branch"

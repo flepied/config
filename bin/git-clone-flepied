@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+derive_dir_name() {
+  local repo=$1
+  local name=${repo%/}
+  name=${name##*:}
+  name=${name##*/}
+  name=${name%.git}
+  printf '%s\n' "$name"
+}
+
+args=("$@")
+positionals=()
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --template|--origin|-o|--branch|-b|--upload-pack|-u|--reference|--reference-if-able|--server-option|--config|-c|--depth|--shallow-since|--shallow-exclude|--separate-git-dir|--jobs|-j)
+      shift 2
+      ;;
+    --template=*|--origin=*|--branch=*|--upload-pack=*|--reference=*|--reference-if-able=*|--server-option=*|--config=*|--depth=*|--shallow-since=*|--shallow-exclude=*|--separate-git-dir=*|--jobs=*|-o=*|-b=*|-u=*|-c=*|-j=*)
+      shift
+      ;;
+    --)
+      shift
+      while [[ $# -gt 0 ]]; do
+        positionals+=("$1")
+        shift
+      done
+      ;;
+    -*)
+      shift
+      ;;
+    *)
+      positionals+=("$1")
+      shift
+      ;;
+  esac
+done
+
+if [[ ${#positionals[@]} -ge 1 && ${positionals[0]} == git@github.com:* ]]; then
+  original_repo=${positionals[0]}
+  rewritten_repo=githubperso:${original_repo#git@github.com:}
+  for i in "${!args[@]}"; do
+    if [[ ${args[i]} == "$original_repo" ]]; then
+      args[i]=$rewritten_repo
+      break
+    fi
+  done
+fi
+
+git clone "${args[@]}"
+
+if [[ ${#positionals[@]} -ge 2 ]]; then
+  repo_dir=${positionals[-1]}
+else
+  repo_dir=$(derive_dir_name "${positionals[0]}")
+fi
+
+git -C "$repo_dir" config user.email flepied@gmail.com

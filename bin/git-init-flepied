@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+git init "$@"
+
+repo_dir=$(git rev-parse --show-toplevel 2>/dev/null || true)
+if [[ -z "$repo_dir" && $# -gt 0 && -d "${!#}" ]]; then
+  repo_dir=${!#}
+fi
+
+if [[ -n "$repo_dir" ]]; then
+  git -C "$repo_dir" config user.email flepied@gmail.com
+fi

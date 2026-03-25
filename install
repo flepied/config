@@ -3,10 +3,11 @@
 cd $HOME/config
 
 # AI Assist
-mkdir -p $HOME/.ai-assist $HOME/.iris
+mkdir -p $HOME/.ai-assist $HOME/.iris $HOME/bin
 
 rsync -auv .ai-assist/ $HOME/.ai-assist/
 rsync -auv .iris/ $HOME/.iris/
+rsync -auv bin/ $HOME/bin/
 
 for base in `find . -name '.??*' -type f |grep  -v '.#\|~$' | sed 's@^./@@g'`; do
     rm -f $HOME/$base
