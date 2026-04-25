@@ -13,7 +13,7 @@ if [ "$SHLVL" = 1 ]; then
 
     if type -p claude >& /dev/null; then
         export CLAUDE_CODE_USE_VERTEX=1
-        export CLOUD_ML_REGION=us-east5
+        export CLOUD_ML_REGION=global
         export ANTHROPIC_VERTEX_PROJECT_ID=itpc-gcp-eco-eng-claude
     fi
 
@@ -109,17 +109,18 @@ then
     if [ "$SHELL" = "/bin/pdksh" ]; then
 	PS1="! $ "
     fi
-    if [ -d ~/work/dci-openshift-agent ]; then
-        alias doa='cd ~/work/dci-openshift-agent/'
+    if [ -d ~/work/distributedci/dci-openshift-agent ]; then
+        alias doa='cd ~/work/distributedci/dci-openshift-agent/'
     fi
-    if [ -d ~/work/dci-openshift-app-agent ]; then
-        alias doaa='cd ~/work/dci-openshift-app-agent/'
+    if [ -d ~/work/distributedci/dci-openshift-app-agent ]; then
+        alias doaa='cd ~/work/distributedci/dci-openshift-app-agent/'
     fi
     if [ -d ~/work/ai-assist ]; then
         alias nexus='~/work/ai-assist/.venv/bin/ai-assist'
         alias iris='AI_ASSIST_REPORTS_DIR=~/iris AI_ASSIST_CONFIG_DIR=~/.iris ~/work/ai-assist/.venv/bin/ai-assist'
         # Agent Under Test 2 (ai-assist-branch2)
         alias aut2='AI_ASSIST_REPORTS_DIR=~/aut2 AI_ASSIST_CONFIG_DIR=~/.aut2 ~/work/ai-assist-branch2/.venv/bin/ai-assist'
+        alias gizmo='AI_ASSIST_REPORTS_DIR=~/aut2 AI_ASSIST_CONFIG_DIR=~/.aut2 ~/work/ai-assist-branch2/.venv/bin/ai-assist'
     fi
     alias j='jobs'
     alias lc='ls -F'
@@ -148,8 +149,12 @@ then
     alias cdw='cd ~/work'
     alias cdp='cd ~/perso'
     alias cde='cd ~/external'
-    alias cdt='cd ~/Téléchargements'
-    alias cdd='cd ~/work/dallas-telco-lab'
+    if [ -d ~/Download ]; then
+        alias cdt='cd ~/Download'
+    else
+        alias cdt='cd ~/Téléchargements'
+    fi
+    alias cdd='cd ~/work/dci-labs'
     alias cdc='cd ~/work/ansible_collections/redhatci/ocp'
     alias e='emacsclient -n'
     alias gti=git
