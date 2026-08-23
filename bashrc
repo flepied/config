@@ -5,8 +5,8 @@ export GOPATH=~/gopath/
 export GOBIN="${GOPATH}bin/"
 
 # DCI specific
-if [ -r "$HOME/work/dci-ansible/dev-ansible.cfg" ]; then
-    export ANSIBLE_CONFIG="$HOME/work/dci-ansible/dev-ansible.cfg"
+if [ -r "$HOME/work/distributedci/dci-ansible/dev-ansible.cfg" ]; then
+    export ANSIBLE_CONFIG="$HOME/work/distributedci/dci-ansible/dev-ansible.cfg"
 fi
 
 if [ "$SHLVL" = 1 ]; then
@@ -19,6 +19,10 @@ if [ "$SHLVL" = 1 ]; then
 
     if type gemini >& /dev/null; then
         export GOOGLE_CLOUD_PROJECT=dci-mcp-server-471716
+    fi
+
+    if type gcloud >& /dev/null; then
+        export CLOUDSDK_PYTHON=/usr/bin/python3.13
     fi
 
     #export http_proxy=${http_proxy-http://proxywww:8080/}
@@ -39,7 +43,7 @@ if [ "$SHLVL" = 1 ]; then
     
 
     PATH=
-    for d in $HOME/.radicle/bin $HOME/pkg/zig-linux-x86_64-0.11.0-dev.1905+e3cf9d165 $HOME/private/bin $HOME/bin $HOME/.local/bin $HOME/.cargo/bin $HOME/pkg/balena-cli $GOBIN /usr/local/sbin /usr/local/bin /usr/X11R6/bin /usr/sbin /usr/bin /sbin /bin /usr/games /usr/local/games .; do
+    for d in $HOME/.radicle/bin $HOME/pkg/zig-linux-x86_64-0.11.0-dev.1905+e3cf9d165 $HOME/private/bin $HOME/bin $HOME/.local/bin $HOME/.cargo/bin $HOME/.opencode/bin $HOME/pkg/balena-cli $GOBIN /usr/local/sbin /usr/local/bin /usr/X11R6/bin /usr/sbin /usr/bin /sbin /bin /usr/games /usr/local/games .; do
 	if [ -d $d ]; then
 	    if [ -z "$PATH" ]; then
 		PATH=$d
@@ -50,11 +54,11 @@ if [ "$SHLVL" = 1 ]; then
     done
 
     # setup bash completion direrctory unde ~/.local/share/bash-completion/
-    if [ -d $HOME/.local/share/bash-completion/ ]; then
+    if [ -d $HOME/.local/share/bash-completion/completions ]; then
         export BASH_COMPLETION_DIR=$HOME/.local/share/bash-completion
 
-        for comp in $(ls $HOME/.local/share/bash-completion/*); do
-            source $comp
+        for comp in "$HOME"/.local/share/bash-completion/completions/*; do
+            [ -f "$comp" ] && source "$comp"
         done
     fi
 
@@ -155,6 +159,9 @@ then
         alias cdt='cd ~/Téléchargements'
     fi
     alias cdd='cd ~/work/dci-labs'
+    alias cddi='cd ~/work/distributedci'
+    alias cdr='cd ~/work/rh-telco-labs'
+    alias cdj='cd ~/junk'
     alias cdc='cd ~/work/ansible_collections/redhatci/ocp'
     alias e='emacsclient -n'
     alias gti=git
